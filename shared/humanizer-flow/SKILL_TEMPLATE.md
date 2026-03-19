@@ -24,11 +24,11 @@ seed: "{seed_placeholder}"
 {
   "skill_name": "{skill_name}",
   "input": {
-    "text": "string — the raw text to process",
-    "context": "string — brief description of the document type and audience",
-    "tone": "string — one of: {tone_presets}",
-    "preserve_facts": ["array of strings — entities, dates, metrics that must not change"],
-    "profile": "string — one of: default | resume | email | technical"
+    "text": "string - the raw text to process",
+    "context": "string - brief description of the document type and audience",
+    "tone": "string - one of: {tone_presets}",
+    "preserve_facts": ["array of strings - entities, dates, metrics that must not change"],
+    "profile": "string - one of: default | resume | email | technical"
   }
 }
 ```
@@ -41,14 +41,14 @@ seed: "{seed_placeholder}"
 {
   "skill_name": "{skill_name}",
   "output": {
-    "draft": "string — Pass 1 rewrite",
-    "audit_bullets": ["string — remaining AI tells identified in self-audit"],
-    "final": "string — Pass 2 final rewrite after audit",
-    "changes_summary": "string — optional brief list of changes made",
+    "draft": "string - Pass 1 rewrite",
+    "audit_bullets": ["string - remaining AI tells identified in self-audit"],
+    "final": "string - Pass 2 final rewrite after audit",
+    "changes_summary": "string - optional brief list of changes made",
     "patterns_removed": [1, 7, 13],
     "fact_check": {
       "preserved": ["list of facts confirmed present in final"],
-      "warnings": ["list of facts that may have changed — requires human review"]
+      "warnings": ["list of facts that may have changed - requires human review"]
     }
   }
 }
@@ -58,7 +58,7 @@ seed: "{seed_placeholder}"
 
 ## Canonical Prompt Flow
 
-### PASS 1 — Draft Rewrite
+### PASS 1 - Draft Rewrite
 
 > **Settings:** temperature=0.0, seed={seed_placeholder}
 
@@ -93,12 +93,12 @@ PATTERN CATEGORIES TO CHECK:
 
 ---
 
-### PASS 2A — Anti-AI Audit
+### PASS 2A - Anti-AI Audit
 
 > **Settings:** temperature=0.0, seed={seed_placeholder}
 
 ```
-What makes the following so obviously AI generated? List only the remaining tells as brief bullet points. Be specific — name the phrase or construction, not just the category.
+What makes the following so obviously AI generated? List only the remaining tells as brief bullet points. Be specific - name the phrase or construction, not just the category.
 
 TEXT:
 {draft_output}
@@ -106,7 +106,7 @@ TEXT:
 
 ---
 
-### PASS 2B — Final Rewrite
+### PASS 2B - Final Rewrite
 
 > **Settings:** temperature=0.0, seed={seed_placeholder}
 

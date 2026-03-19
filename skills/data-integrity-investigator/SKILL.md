@@ -1,6 +1,7 @@
 ---
 name: data-integrity-investigator
 description: Investigate mismatches, duplicates, missing records, broken keys, and reconciliation defects using structured SQL or Python diagnostics.
+version: "1.0.0"
 ---
 
 # Purpose

@@ -1,6 +1,7 @@
 ---
 name: python-data-investigator
 description: Use Python to profile exports, find data quality issues, inspect bad records, and summarize findings in plain language.
+version: "1.0.0"
 ---
 
 # Purpose

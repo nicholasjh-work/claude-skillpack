@@ -1,6 +1,7 @@
 ---
 name: nick-mode-writing-standard
 description: Apply Nick Mode writing rules across emails, resumes, technical writing, and summaries.
+version: "1.0.0"
 ---
 
 # Nick Mode Writing Constitution

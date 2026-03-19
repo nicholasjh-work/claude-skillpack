@@ -1,0 +1,221 @@
+{
+  "skills": ["grammar", "editing", "structure", "rhetoric"],
+  "rules": [
+    {
+      "id": 1,
+      "label": "Undue Emphasis on Significance, Legacy, and Broader Trends",
+      "skill": "rhetoric",
+      "detection_hint": "\\b(stands? as|serves? as|marks? a pivotal|testament to|underscores? (the|its)|highlights? (the|its) (importance|significance)|shaping the|reflects? broader|setting the stage|indelible mark|deeply rooted|focal point|enduring legacy)\\b",
+      "severity_default": "high",
+      "when_high": "Escalate to high when two or more significance-inflation phrases appear in a single paragraph, inflating ordinary facts into landmark claims.",
+      "suggested_fix": "Before: 'This initiative marks a pivotal moment in the evolution of regional governance.' → After: 'This initiative changed how the region approves infrastructure projects.'"
+    },
+    {
+      "id": 2,
+      "label": "Undue Emphasis on Notability and Media Coverage",
+      "skill": "rhetoric",
+      "detection_hint": "\\b(featured in|covered by|as reported by|cited in|independent coverage|active social media presence|over \\d[\\d,]+ followers|written by a leading expert)\\b",
+      "severity_default": "med",
+      "when_high": "Escalate to high when fabricated or unverifiable media claims are present (outlet names cannot be confirmed against preserve_facts).",
+      "suggested_fix": "Before: 'Her work has been featured in The New York Times with 500,000 followers.' → After: 'Her work has appeared in national outlets and attracted a large online readership.' (only if verifiable)"
+    },
+    {
+      "id": 3,
+      "label": "Superficial Analyses with -ing Endings",
+      "skill": "rhetoric",
+      "detection_hint": ",\\s*(highlighting|underscoring|emphasizing|showcasing|symbolizing|reflecting|cultivating|fostering|encompassing|contributing to)\\b",
+      "severity_default": "med",
+      "when_high": "Escalate to high when the trailing participial clause is the only analytical content in the sentence (no concrete supporting detail).",
+      "suggested_fix": "Before: 'The temple uses blue and gold colors, symbolizing the region's deep connection to the land.' → After: 'The temple uses blue and gold — the region's traditional ceremonial colors.'"
+    },
+    {
+      "id": 4,
+      "label": "Promotional and Advertisement-like Language",
+      "skill": "rhetoric",
+      "detection_hint": "\\b(boasts?|vibrant|nestled|breathtaking|stunning|must-visit|groundbreaking|renowned|nestled in the heart of|rich (cultural )?heritage|profound (impact|effect))\\b",
+      "severity_default": "high",
+      "when_high": "Always high in technical or academic domains; high in any domain when the promotional term replaces a specific factual claim.",
+      "suggested_fix": "Before: 'Nestled within the breathtaking region of Gonder, the town boasts a vibrant cultural heritage.' → After: 'Gonder is a historic walled town in northern Ethiopia, site of six 17th-century castles.'"
+    },
+    {
+      "id": 5,
+      "label": "Vague Attributions and Weasel Words",
+      "skill": "rhetoric",
+      "detection_hint": "\\b(experts? (say|argue|believe|suggest)|industry (reports?|observers?)|some (critics?|sources?|experts?)|observers? have (noted|cited)|it (is|has been) (widely|generally) (believed|noted|argued))\\b",
+      "severity_default": "med",
+      "when_high": "Escalate to high when the vague attribution is the sole support for a causal or statistical claim.",
+      "suggested_fix": "Before: 'Experts believe the river plays a crucial role in the regional ecosystem.' → After: 'The river supplies irrigation for 40% of the region's farmland (Ministry of Agriculture, 2023).'"
+    },
+    {
+      "id": 6,
+      "label": "Outline-like Challenges and Future Prospects Sections",
+      "skill": "rhetoric",
+      "detection_hint": "(?i)(^#+\\s*(challenges?|future (prospects?|outlook))|despite (its|these) \\w+,? \\w+ faces? (several )?(challenges?|issues?)|despite these challenges)",
+      "severity_default": "med",
+      "when_high": "Escalate to high when the section contains no specific challenges, only abstract nouns (e.g., 'faces challenges of complexity and scale').",
+      "suggested_fix": "Before: 'Despite its success, the city faces several challenges. Despite these challenges, growth continues.' → After: 'The city's main constraint is water supply — current capacity covers 70% of peak demand.'"
+    },
+    {
+      "id": 7,
+      "label": "Overused AI Vocabulary Words",
+      "skill": "editing",
+      "detection_hint": "\\b(additionally|align with|crucial|delve|emphasizing|enduring|enhance|fostering|garner|highlight|interplay|intricate|intricacies|key|landscape|pivotal|showcase|tapestry|testament|underscore|valuable|vibrant)\\b",
+      "severity_default": "high",
+      "when_high": "High when three or more distinct vocabulary words from the list appear in a 200-character window, or when 'delve' or 'tapestry' appear anywhere.",
+      "suggested_fix": "Before: 'Additionally, the enduring testament to Italian influence showcases the crucial interplay.' → After: 'Italian influence is visible in the arcade facades and the grid street plan.'"
+    },
+    {
+      "id": 8,
+      "label": "Avoidance of is/are (Copula Avoidance)",
+      "skill": "editing",
+      "detection_hint": "\\b(serves? as (a|an|the)|stands? as (a|an|the)|marks? (a|an|the)|represents? (a|an|the)|boasts? (a|an|the)|features? (a|an|the)|offers? (a|an|the))\\b",
+      "severity_default": "high",
+      "when_high": "High when copula-avoidance constructions appear more than twice in a paragraph, making the prose consistently evasive.",
+      "suggested_fix": "Before: 'Gallery 825 serves as LAAA's exhibition space and boasts over 3,000 square feet.' → After: 'Gallery 825 is LAAA's exhibition space — 3,000 square feet.'"
+    },
+    {
+      "id": 9,
+      "label": "Negative Parallelisms",
+      "skill": "editing",
+      "detection_hint": "\\b(not (only|just|merely).{0,60}(but (also)?|it'?s)\\b|it'?s not (just|only|merely) about.{0,80}it'?s (about)?)\\b",
+      "severity_default": "med",
+      "when_high": "Escalate to high when the negative-parallelism construction is the thesis sentence and the positive clause adds no specific information.",
+      "suggested_fix": "Before: 'It's not just about the beat; it's part of the overall aggression and atmosphere.' → After: 'The beat drives the track's aggression.'"
+    },
+    {
+      "id": 10,
+      "label": "Rule of Three Overuse",
+      "skill": "editing",
+      "detection_hint": "(\\w[\\w\\s]*,\\s*\\w[\\w\\s]*,\\s*and \\w[\\w\\s]*)",
+      "severity_default": "med",
+      "when_high": "Escalate to high when two or more triadic lists appear within 300 characters and all items are abstract nouns.",
+      "suggested_fix": "Before: 'The event features innovation, inspiration, and industry insights.' → After: 'The event covers three topics: [specific topic A], [specific topic B], [specific topic C].'"
+    },
+    {
+      "id": 11,
+      "label": "Elegant Variation (Synonym Cycling)",
+      "skill": "editing",
+      "detection_hint": "Within 300 chars: 3+ distinct noun phrases referring to the same entity (protagonist|main character|central figure|hero|the lead)",
+      "severity_default": "low",
+      "when_high": "Escalate to high in technical documentation where synonym cycling causes ambiguity about which entity is being referenced.",
+      "suggested_fix": "Before: 'The protagonist faces obstacles. The central figure triumphs. The hero returns.' → After: 'Alicia faces the obstacle, overcomes it, and returns.'"
+    },
+    {
+      "id": 12,
+      "label": "False Ranges",
+      "skill": "editing",
+      "detection_hint": "from .{3,40} to .{3,40}, from .{3,40} to .{3,40}|from (the)? \\w+ (of|in) .{5,50} to (the)? \\w+ (of|in)",
+      "severity_default": "low",
+      "when_high": "Escalate to high when the false range spans incompatible conceptual categories (e.g., metaphysical to physical) making the sentence meaningless.",
+      "suggested_fix": "Before: 'From the singularity of the Big Bang to the cosmic web, from the birth of stars to dark matter.' → After: 'The model spans cosmological scales, from the Big Bang to present-day large-scale structure.'"
+    },
+    {
+      "id": 13,
+      "label": "Em Dash Overuse",
+      "skill": "grammar",
+      "detection_hint": "—",
+      "severity_default": "high",
+      "when_high": "High when more than two em dashes appear in a 300-character window or more than one appears in a single sentence.",
+      "suggested_fix": "Before: 'The term is promoted by Dutch institutions—not by the people themselves—yet this mislabeling continues—even in official documents.' → After: 'The term comes from Dutch institutions, not from the people themselves, and persists in official documents.'"
+    },
+    {
+      "id": 14,
+      "label": "Overuse of Boldface",
+      "skill": "grammar",
+      "detection_hint": "\\*\\*[^*]{2,60}\\*\\*",
+      "severity_default": "med",
+      "when_high": "Escalate to high when bold spans appear in consecutive sentences or more than three times in a 300-character block, creating visual noise.",
+      "suggested_fix": "Before: 'It blends **OKRs**, **KPIs**, and **Balanced Scorecard (BSC)** into **a unified framework**.' → After: 'It combines OKRs, KPIs, and Balanced Scorecard into one framework.'"
+    },
+    {
+      "id": 15,
+      "label": "Inline-Header Vertical Lists",
+      "skill": "grammar",
+      "detection_hint": "^[-*]\\s+\\*\\*[A-Z][^*]{2,50}:\\*\\*",
+      "severity_default": "med",
+      "when_high": "Escalate to high when three or more consecutive bullets follow the inline-header pattern with no prose bridging them.",
+      "suggested_fix": "Before: '- **User Experience:** The UX has been improved.' → After: Integrate into prose or use a proper section heading with paragraph text."
+    },
+    {
+      "id": 16,
+      "label": "Title Case in Headings",
+      "skill": "grammar",
+      "detection_hint": "^#{1,6}\\s+([A-Z][a-z]+ ){2,}[A-Z]",
+      "severity_default": "med",
+      "when_high": "Escalate to high in academic or technical documents where style guide specifies sentence case for section headings.",
+      "suggested_fix": "Before: '## Strategic Negotiations And Global Partnerships' → After: '## Strategic negotiations and global partnerships'"
+    },
+    {
+      "id": 17,
+      "label": "Emojis",
+      "skill": "grammar",
+      "detection_hint": "[\\U0001F300-\\U0001FFFF\\U00002702-\\U000027B0]",
+      "severity_default": "low",
+      "when_high": "Escalate to high when emojis appear in section headings or document titles in formal/technical/academic contexts.",
+      "suggested_fix": "Before: '🚀 **Launch Phase:** The product launches in Q3' → After: '**Launch Phase:** The product launches in Q3'"
+    },
+    {
+      "id": 18,
+      "label": "Curly Quotation Marks",
+      "skill": "grammar",
+      "detection_hint": "[\\u201C\\u201D\\u2018\\u2019]",
+      "severity_default": "low",
+      "when_high": "Escalate to high in code documentation or markdown files where curly quotes break syntax highlighting or copy-paste fidelity.",
+      "suggested_fix": "Before: '\u201cthe project is on track\u201d' → After: '\"the project is on track\"'"
+    },
+    {
+      "id": 19,
+      "label": "Collaborative Communication Artifacts",
+      "skill": "editing",
+      "detection_hint": "\\b(I hope (this|that) helps|let me know if you('d| would) like|here is (a|an|the|your)|of course!|certainly!|feel free to|would you like me to|is there anything else)\\b",
+      "severity_default": "high",
+      "when_high": "Always high — these phrases are unambiguous chatbot artifacts with no place in any professional document.",
+      "suggested_fix": "Before: 'Here is an overview of the French Revolution. I hope this helps!' → After: Remove the opener; begin directly with 'The French Revolution (1789–1799) ended the monarchy...'"
+    },
+    {
+      "id": 20,
+      "label": "Knowledge-Cutoff Disclaimers",
+      "skill": "editing",
+      "detection_hint": "\\b(as of (my )?(last |knowledge )?(update|cutoff|training)|up to my (last )?training|based on available information|while specific details (are|remain) (limited|scarce)|it (appears?|seems?) to have been)\\b",
+      "severity_default": "low",
+      "when_high": "Escalate to high when the disclaimer appears in a document presented as authoritative or published (e.g., a report, spec, or press release).",
+      "suggested_fix": "Before: 'While specific details are limited based on available information, the company appears to have been founded in the 1990s.' → After: State the known fact or omit; do not hedge with AI-specific uncertainty language."
+    },
+    {
+      "id": 21,
+      "label": "Sycophantic/Servile Tone",
+      "skill": "editing",
+      "detection_hint": "\\b(great question!|excellent (point|question)|you('re| are) absolutely right|that('s| is) (an )?excellent|good point!|what a (great|thoughtful))\\b",
+      "severity_default": "high",
+      "when_high": "Always high — sycophantic openers are unambiguous AI artifacts that undermine the author's credibility in any context.",
+      "suggested_fix": "Before: 'Great question! You're absolutely right that this is a complex topic.' → After: Delete the opener and begin with the substantive response."
+    },
+    {
+      "id": 22,
+      "label": "Filler Phrases",
+      "skill": "grammar",
+      "detection_hint": "\\b(in order to|due to the fact that|at this point in time|in the event that|has the ability to|it is important to note that|it should be noted that|needless to say|as a matter of fact|for all intents and purposes)\\b",
+      "severity_default": "med",
+      "when_high": "Escalate to high when multiple filler phrases stack in a single sentence, creating a phrase-density pattern associated with AI generation.",
+      "suggested_fix": "Before: 'In order to achieve this goal, it is important to note that due to the fact that resources are limited, planning is key.' → After: 'To hit this goal with limited resources, plan early.'"
+    },
+    {
+      "id": 23,
+      "label": "Excessive Hedging",
+      "skill": "grammar",
+      "detection_hint": "\\b(could|might|may|possibly|potentially|arguably|perhaps|likely|seemingly|apparently|somewhat)\\b",
+      "severity_default": "med",
+      "when_high": "Escalate to high when three or more hedge tokens appear within a 100-character window (stacked hedging).",
+      "suggested_fix": "Before: 'It could potentially possibly be argued that the policy might have some effect.' → After: 'The policy likely reduced costs by 12% in the first quarter (see Table 2).'"
+    },
+    {
+      "id": 24,
+      "label": "Generic Positive Conclusions",
+      "skill": "grammar",
+      "detection_hint": "\\b(the future (looks|is) bright|exciting times (lie|are) ahead|continue(s)? (this|our|the) journey (toward|towards)|(in )?(the )?right direction|we look forward to|a (major|significant) step forward|the possibilities are endless|sky'?s the limit)\\b",
+      "severity_default": "high",
+      "when_high": "High when appearing in the final 20% of any document — generic conclusions are a near-universal AI tell that erases the author's actual position.",
+      "suggested_fix": "Before: 'The future looks bright. Exciting times lie ahead as we continue this journey toward excellence.' → After: State the actual next action, deadline, or open question instead."
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 ---
 name: kpi-definition-governance
 description: Define KPIs with formula, grain, source, exclusions, ownership, cadence, caveats, and business interpretation notes.
+version: "1.0.0"
 ---
 
 # Purpose

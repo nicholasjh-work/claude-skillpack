@@ -12,16 +12,16 @@ seed: "LINKEDIN_SEED_001"
 
 # linkedin-message-writer
 
-**Purpose:** Generate LinkedIn messages that sound like a real human wrote them — direct opener, specific reason for reaching out, one clear ask.
+**Purpose:** Generate LinkedIn messages that sound like a real human wrote them - direct opener, specific reason for reaching out, one clear ask.
 
 ## Input Schema
 
 | Field | Type | Required |
 |---|---|---|
-| `message_type` | string | yes — outreach, response, follow-up, referral-ask |
+| `message_type` | string | yes - outreach, response, follow-up, referral-ask |
 | `recipient_name` | string | yes |
-| `context` | string | yes — why you're reaching out and what you know about them |
-| `ask` | string | yes — one specific ask |
+| `context` | string | yes - why you're reaching out and what you know about them |
+| `ask` | string | yes - one specific ask |
 | `your_name` | string | yes |
 | `tone` | string | yes |
 
@@ -41,7 +41,7 @@ seed: "LINKEDIN_SEED_001"
 ```json
 {
   "message": "...",
-  "subject": "optional — for InMail",
+  "subject": "optional - for InMail",
   "word_count": 65,
   "patterns_removed": [7, 19, 21]
 }
@@ -55,16 +55,15 @@ seed: "LINKEDIN_SEED_001"
 
 ## Examples
 
-### Short — cold outreach
+### Short - cold outreach
 **Before:** "I hope this message finds you well! I am incredibly excited to connect with you and would love to potentially explore some opportunities."
-**After:** "Hi Priya — saw your post on Stripe's platform team. I'm a staff eng focused on infra and developer experience. Would a 15-minute call make sense to talk through how you've structured the team? Happy to share what I've been working on in return."
+**After:** "Hi Priya - saw your post on Stripe's platform team. I'm a staff eng focused on infra and developer experience. Would a 15-minute call make sense to talk through how you've structured the team? Happy to share what I've been working on in return."
 
-### Medium — response to a job post
+### Medium - response to a job post
 **Before:** "Great opportunity! I am passionate about leveraging my extensive experience to add value to your dynamic team and contribute to your transformative mission."
-**After:** "Hi — I saw the staff eng posting. I've spent 3 years building out platform tooling (CI, feature flags, deploy automation) at Series B and Series C companies. Happy to send a resume if it looks like a fit."
+**After:** "Hi - I saw the staff eng posting. I've spent 3 years building out platform tooling (CI, feature flags, deploy automation) at Series B and Series C companies. Happy to send a resume if it looks like a fit."
 
-### Long — referral ask
-See `examples/long.json`.
+### Long - referral ask
 
 ## Unit Tests
 
@@ -72,8 +71,8 @@ See `examples/long.json`.
 # tests/skills/test_linkedin_message_writer.py
 from ai_pattern_scrubber import detect_patterns
 
-OUTREACH = "Hi Priya — saw your post on Stripe's platform team. I'm a staff eng focused on infra and developer tooling. Would a quick call make sense? Happy to share what I've been working on."
-RESPONSE = "Hi — I saw the staff eng posting. 3 years of platform tooling work (CI, feature flags, deploy automation). Happy to send a resume if it's a fit."
+OUTREACH = "Hi Priya - saw your post on Stripe's platform team. I'm a staff eng focused on infra and developer tooling. Would a quick call make sense? Happy to share what I've been working on."
+RESPONSE = "Hi - I saw the staff eng posting. 3 years of platform tooling work (CI, feature flags, deploy automation). Happy to send a resume if it's a fit."
 
 def test_outreach_no_sycophancy():
     assert not [h for h in detect_patterns(OUTREACH) if h.id == 21]

@@ -18,7 +18,7 @@ seed: "CORRECTION_SEED_001"
 | Field | Type | Required |
 |---|---|---|
 | `what_went_wrong` | string | yes |
-| `impact` | string | yes — quantified if possible |
+| `impact` | string | yes - quantified if possible |
 | `what_was_fixed` | string | yes |
 | `what_changes_next` | string | yes |
 | `audience` | string | yes |
@@ -44,11 +44,11 @@ seed: "CORRECTION_SEED_001"
 
 ### Short
 **Before:** "We sincerely apologize for any inconvenience this may have potentially caused. We value your business."
-**After:** "We showed incorrect pricing on March 10. Your order was refunded in full and should appear in 2–3 business days."
+**After:** "We showed incorrect pricing on March 10. Your order was refunded in full and should appear in 2-3 business days."
 
 ### Medium
 **Before:** "Due to a complex technical situation involving our pricing infrastructure, some customers may have experienced incorrect pricing."
-**After:** "On March 10 (11 AM–3 PM PT), EU customers saw incorrect prices at checkout. 142 orders were affected and all have been refunded. We've added a validation step to prevent this happening again."
+**After:** "On March 10 (11 AM-3 PM PT), EU customers saw incorrect prices at checkout. 142 orders were affected and all have been refunded. We've added a validation step to prevent this happening again."
 
 ### Long (exec escalation)
 **Before:** "I hope this message finds you well. I wanted to reach out and provide transparency regarding a situation."

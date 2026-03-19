@@ -1,6 +1,7 @@
 ---
 name: ai-pattern-scrubber
 description: Final-pass prose scrubber for stale AI-style writing patterns and generic phrasing.
+version: "1.0.0"
 ---
 
 # AI Pattern Scrubber

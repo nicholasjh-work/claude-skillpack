@@ -35,7 +35,7 @@ violations = validate_against_standard(text, profile="resume")
 
 | # | Rule | Before | After |
 |---|---|---|---|
-| 1 | NICK-001 ban_em_dash | The result—a 40% drop—justified the refactor. | The result was a 40% drop, which justified the refactor. |
+| 1 | NICK-001 ban_em_dash | The result-a 40% drop-justified the refactor. | The result was a 40% drop, which justified the refactor. |
 | 2 | NICK-002 ban_emojis | 🚀 Launched new checkout flow in Q3. | Launched new checkout flow in Q3. |
 | 3 | NICK-003 prefer_copula | The tool serves as a unified platform for all workflows. | The tool is a unified platform for all workflows. |
 | 4 | NICK-004 ban_ai_vocab | I delve into the intricate interplay of distributed systems. | I analyze how distributed systems interact. |

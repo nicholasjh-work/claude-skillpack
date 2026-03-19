@@ -20,8 +20,8 @@ seed: "BULLET_REWRITER_SEED_001"
 | Field | Type | Required |
 |---|---|---|
 | `bullet` | string | yes |
-| `context` | string | no — role, company, level |
-| `available_metrics` | string[] | no — numbers to work in |
+| `context` | string | no - role, company, level |
+| `available_metrics` | string[] | no - numbers to work in |
 | `preserve_facts` | string[] | yes |
 
 ```json
@@ -48,7 +48,7 @@ seed: "BULLET_REWRITER_SEED_001"
 
 **Pass 1:** Rewrite starting with action verb. Inject best available metric from `available_metrics`. Remove all banned phrases. Preserve `preserve_facts`.
 
-**Pass 2:** If no metric available, output revised bullet + `metric_warning: "No metric available — add a number before publishing."` Never fabricate a metric.
+**Pass 2:** If no metric available, output revised bullet + `metric_warning: "No metric available - add a number before publishing."` Never fabricate a metric.
 
 ## Examples
 

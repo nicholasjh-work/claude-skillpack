@@ -1,6 +1,7 @@
 ---
 name: resume-banned-language-pack
 description: Shared banned-language and realism rules for resume writing and editing.
+version: "1.0.0"
 ---
 
 # Resume Banned Language Pack

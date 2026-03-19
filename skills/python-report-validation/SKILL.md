@@ -1,6 +1,7 @@
 ---
 name: python-report-validation
 description: Validate report outputs with Python using row-count checks, subtotal tests, duplicate-grain checks, and comparison summaries.
+version: "1.0.0"
 ---
 
 # Purpose

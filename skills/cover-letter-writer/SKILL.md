@@ -21,9 +21,9 @@ seed: "COVER_LETTER_SEED_001"
 |---|---|---|
 | `role_title` | string | yes |
 | `company` | string | yes |
-| `opening_hook` | string | yes — a specific story, observation, or connection point |
-| `relevant_experience` | string[] | yes — 2–3 items with metrics |
-| `why_this_company` | string | yes — specific, not generic |
+| `opening_hook` | string | yes - a specific story, observation, or connection point |
+| `relevant_experience` | string[] | yes - 2-3 items with metrics |
+| `why_this_company` | string | yes - specific, not generic |
 | `ask` | string | yes |
 | `preserve_facts` | string[] | yes |
 
@@ -31,7 +31,7 @@ seed: "COVER_LETTER_SEED_001"
 {
   "role_title": "Staff Engineer",
   "company": "Stripe",
-  "opening_hook": "I've been using Stripe since 2015 and recently went through your API migration guide — the versioning strategy is the clearest I've seen in fintech.",
+  "opening_hook": "I've been using Stripe since 2015 and recently went through your API migration guide - the versioning strategy is the clearest I've seen in fintech.",
   "relevant_experience": [
     "Built a payment routing engine at Acme that processed $40M/month, reducing failed payments by 22%",
     "Led a 6-engineer team through a PCI-DSS Level 1 certification"
@@ -50,16 +50,15 @@ seed: "COVER_LETTER_SEED_001"
 
 ## Examples
 
-### Short — 1-paragraph hook
+### Short - 1-paragraph hook
 **Before:** "I am incredibly excited and passionate about this opportunity to leverage my extensive experience at your groundbreaking company."
-**After:** "I've been using Stripe since 2015. When I read through your API versioning guide last month, it was the clearest versioning strategy I've seen in fintech — exactly the level of care I try to put into platform work."
+**After:** "I've been using Stripe since 2015. When I read through your API versioning guide last month, it was the clearest versioning strategy I've seen in fintech - exactly the level of care I try to put into platform work."
 
-### Medium — body paragraph
+### Medium - body paragraph
 **Before:** "I have proven track record of results-driven leadership that has added significant value to organizations through innovative solutions."
-**After:** "At Acme, I built the payment routing logic that processes $40M/month. When the first provider started failing, the system rerouted automatically — zero engineer intervention. That's the kind of reliability I want to build at scale."
+**After:** "At Acme, I built the payment routing logic that processes $40M/month. When the first provider started failing, the system rerouted automatically - zero engineer intervention. That's the kind of reliability I want to build at scale."
 
 ### Long
-See `examples/long.json`.
 
 ## Unit Tests
 

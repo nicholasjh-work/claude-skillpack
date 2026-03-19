@@ -19,9 +19,9 @@ seed: "RESUME_EDITOR_SEED_001"
 
 | Field | Type | Required |
 |---|---|---|
-| `bullets` | string[] | yes — existing resume bullets |
-| `context` | string | no — additional context for metric inference |
-| `preserve_facts` | string[] | yes — must not change these |
+| `bullets` | string[] | yes - existing resume bullets |
+| `context` | string | no - additional context for metric inference |
+| `preserve_facts` | string[] | yes - must not change these |
 | `tone` | string | yes |
 
 ```json
@@ -45,13 +45,13 @@ seed: "RESUME_EDITOR_SEED_001"
     {"original": "...", "revised": "...", "changes": ["removed 'responsible for'", "added action verb 'Owned'"]}
   ],
   "banned_phrases_removed": ["responsible for", "helped", "strong communicator"],
-  "metric_warnings": ["bullet 2: no metric found — add a number before publishing"]
+  "metric_warnings": ["bullet 2: no metric found - add a number before publishing"]
 }
 ```
 
 ## Prompt Flow
 
-**Pass 1:** For each bullet: flag banned phrases → rewrite starting with action verb → inject metric if known → preserve preserve_facts.
+**Pass 1:** For each bullet: flag banned phrases -> rewrite starting with action verb -> inject metric if known -> preserve preserve_facts.
 **Pass 2:** Audit for remaining AI tells. Flag bullets with no metric as warnings (do not fabricate metrics).
 
 ## Examples

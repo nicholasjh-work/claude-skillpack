@@ -1,0 +1,42 @@
+name: skill-lint
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - "skills/**"
+      - "shared/**/SKILL.md"
+      - "tools/skill_linter.py"
+      - ".github/workflows/skill-lint.yml"
+  pull_request:
+    branches: [main, develop]
+    paths:
+      - "skills/**"
+      - "shared/**/SKILL.md"
+      - "tools/skill_linter.py"
+      - ".github/workflows/skill-lint.yml"
+
+jobs:
+  lint-skills:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyyaml
+
+      - name: Lint all SKILL.md files
+        run: python tools/skill_linter.py skills/
+
+      - name: Report skill count
+        if: always()
+        run: |
+          COUNT=$(find skills -name SKILL.md | wc -l | tr -d ' ')
+          echo "Checked $COUNT SKILL.md files"

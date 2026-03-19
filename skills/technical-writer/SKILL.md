@@ -18,10 +18,10 @@ seed: "TECH_WRITER_SEED_001"
 
 | Field | Type | Required |
 |---|---|---|
-| `doc_type` | string | yes — readme, runbook, adr, api-doc, design-doc |
-| `content` | string | yes — raw notes or draft |
+| `doc_type` | string | yes - readme, runbook, adr, api-doc, design-doc |
+| `content` | string | yes - raw notes or draft |
 | `preserve_facts` | string[] | yes |
-| `audience` | string | yes — e.g., "on-call engineers", "external API consumers" |
+| `audience` | string | yes - e.g., "on-call engineers", "external API consumers" |
 | `tone` | string | yes |
 
 ```json
@@ -58,15 +58,15 @@ seed: "TECH_WRITER_SEED_001"
 
 ## Examples
 
-### Short — runbook symptom
+### Short - runbook symptom
 **Before:** "The service serves as a critical component and may be experiencing issues that could potentially be causing downstream impact."
 **After:** "Symptom: payment-processor is returning 5xx. Downstream: checkout is blocked."
 
-### Medium — README section
+### Medium - README section
 **Before:** "This groundbreaking tool boasts the ability to leverage cutting-edge algorithms to enhance developer productivity."
 **After:** "This tool reduces CI build time by parallelizing your test suite. It requires Python 3.11+ and a Redis instance."
 
-### Long — ADR
+### Long - ADR
 **Before:** "We have decided to utilize a microservices architecture, underscoring its vital role in our evolving landscape and highlighting its significance for long-term scalability, cultivating a foundation for future growth."
 **After:** "Decision: adopt a microservices architecture for the billing domain.\nContext: the monolith's deploy cycle is 2 hours; billing changes block all other deploys.\nConsequences: services will communicate over gRPC; the team needs observability tooling."
 
