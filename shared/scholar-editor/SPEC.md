@@ -1,4 +1,4 @@
-# Scholar Editor — Expert Audit SPEC
+# Scholar Editor - Expert Audit SPEC
 **Version:** 0.1.0 | **Temperature:** 0.0 | **Seed:** SCHOLAR_SPEC_SEED_001
 
 ---
@@ -9,7 +9,7 @@ The Scholar Editor audit pipeline replaces the informal Humanizer two-pass flow 
 three-pass editorial pipeline. Detection is grounded in:
 
 - **Statistical/lexical cues**: MIT Technology Review (2022) analysis of token-probability patterns
-  in AI-generated text — high-frequency function words, low perplexity phrases, and smooth syntactic
+  in AI-generated text - high-frequency function words, low perplexity phrases, and smooth syntactic
   transitions are primary signals. Reference: https://www.technologyreview.com/2022/12/19/1065596/how-to-spot-ai-generated-text/
 - **GLTR-style heuristics**: ArXiv 1906.04043 (Gehrmann et al., 2019) shows that AI text clusters
   in the top-k most probable token positions. Lexical cues that proxy for low-surprisal generation
@@ -36,7 +36,7 @@ Scans `text` for all 24 patterns from `rubric.json`. Returns a list of `PatternH
 - `domain`: One of `"technical"`, `"academic"`, `"marketing"`, `"casual"`, `"general"`.
   Domain affects severity escalation rules (see rubric.json `when_high` fields).
 
-**Returns:** `List[PatternHit]` — may be empty. Sorted by `span_start`.
+**Returns:** `List[PatternHit]` - may be empty. Sorted by `span_start`.
 
 **Raises:**
 - `TextTooLongError`: if `len(text) > 50000`
@@ -44,7 +44,7 @@ Scans `text` for all 24 patterns from `rubric.json`. Returns a list of `PatternH
 
 ### 2.2 `audit_draft(text: str, preserve_facts: List[str], domain: str = "general") -> AuditResult`
 
-Runs the full Expert Audit pipeline: fact-lock pre-pass → domain classification → pattern detection.
+Runs the full Expert Audit pipeline: fact-lock pre-pass -> domain classification -> pattern detection.
 
 **Parameters:**
 - `text`: Draft text to audit
@@ -55,7 +55,7 @@ Runs the full Expert Audit pipeline: fact-lock pre-pass → domain classificatio
 - `issues`: `List[Issue]`
 - `facts_locked`: `Dict` from `extract_facts(text)`
 - `domain_detected`: `str`
-- `blocked`: `bool` — true if any `Issue.severity == "high"` or if any `preserve_facts` token
+- `blocked`: `bool` - true if any `Issue.severity == "high"` or if any `preserve_facts` token
   is absent from `text`
 
 ---
@@ -67,13 +67,13 @@ Runs the full Expert Audit pipeline: fact-lock pre-pass → domain classificatio
 ```python
 @dataclass
 class PatternHit:
-    id: int               # Pattern ID 1–24
+    id: int               # Pattern ID 1-24
     label: str            # Pattern label from rubric.json
     span_start: int       # Character offset of match start
     span_end: int         # Character offset of match end
     text: str             # Matched text substring
     severity: str         # "low" | "med" | "high"
-    confidence: float     # 0.0–1.0; hits below 0.7 are suppressed
+    confidence: float     # 0.0-1.0; hits below 0.7 are suppressed
     rationale: str        # One-line explanation citing research source
 ```
 
@@ -119,17 +119,17 @@ You are a senior editorial auditor applying an evidence-based AI-writing detecti
 Your analysis is grounded in:
 - MIT Technology Review (2022): statistical token-probability patterns in AI text
   (low perplexity, high-frequency function words, smooth syntactic transitions)
-- ArXiv 1906.04043 — GLTR (Gehrmann et al., 2019): AI text clusters in top-k most probable
+- ArXiv 1906.04043 - GLTR (Gehrmann et al., 2019): AI text clusters in top-k most probable
   token positions; lexical proxies include AI vocabulary lists and filler phrases
 - Hunting the Muse practitioner heuristics: sycophantic openers, chatbot artifacts, em-dash overuse
 - East Central faculty resources: promotional language, vague attributions, copula avoidance
 
 You have access to rubric.json containing 24 pattern rules with detection_hint, severity_default,
-when_high, and suggested_fix for each pattern ID (1–24).
+when_high, and suggested_fix for each pattern ID (1-24).
 
 Operating principles:
-- Conservative: confidence < 0.7 → do not emit an Issue
-- Fact-lock: any preserve_facts token absent from the text → blocked=true regardless of issues
+- Conservative: confidence < 0.7 -> do not emit an Issue
+- Fact-lock: any preserve_facts token absent from the text -> blocked=true regardless of issues
 - Never invent facts; never alter named entities, dates, or numeric claims
 - Return ONLY valid JSON. No prose, no markdown, no explanation outside the JSON object.
 ```
@@ -156,7 +156,7 @@ TASK:
    the detection_hint regex/lexical cues. For each match:
    - Record span_start, span_end, matched text
    - Assign severity per severity_default; escalate to "high" if when_high condition is met
-   - Compute confidence (0.0–1.0); suppress if < 0.7
+   - Compute confidence (0.0-1.0); suppress if < 0.7
    - Write a one-line rationale citing MIT (2022) or ArXiv 1906.04043 for patterns 7, 8, 22, 23;
      cite Hunting the Muse or East Central for patterns 4, 13, 19, 21.
 
@@ -213,9 +213,9 @@ TASK:
 | 16 | med | Style guide specifies sentence case (academic/technical) |
 | 17 | low | Emoji in section heading (formal context) |
 | 18 | low | Code doc or markdown where curly quotes break syntax |
-| 19 | high | Always high — unambiguous chatbot artifact |
+| 19 | high | Always high - unambiguous chatbot artifact |
 | 20 | low | Document presented as authoritative/published |
-| 21 | high | Always high — sycophantic openers in any context |
+| 21 | high | Always high - sycophantic openers in any context |
 | 22 | med | Multiple fillers stack in single sentence |
 | 23 | med | 3+ hedge tokens in 100-char window |
 | 24 | high | Appears in final 20% of document |

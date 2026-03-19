@@ -17,7 +17,7 @@ nick_mode_profile: default
 # scholar-editor
 
 **Purpose:** Replace the informal Humanizer two-pass flow with a deterministic three-pass editorial
-pipeline (Draft → Expert Audit → Final). Grounded in MIT Technology Review (2022) and ArXiv 1906.04043
+pipeline (Draft -> Expert Audit -> Final). Grounded in MIT Technology Review (2022) and ArXiv 1906.04043
 lexical/statistical cues. Hard fact-lock: any `preserve_facts` token altered or removed sets `blocked=true`.
 
 ---
@@ -37,7 +37,7 @@ lexical/statistical cues. Hard fact-lock: any `preserve_facts` token altered or 
 
 ```json
 {
-  "text": "I hope this helps! The API deprecation — a crucial milestone — showcases our vibrant platform evolution.",
+  "text": "I hope this helps! The API deprecation - a crucial milestone - showcases our vibrant platform evolution.",
   "intent": "Notify the payments team about the API deprecation deadline.",
   "context": "Internal engineering email to the payments team",
   "tone": "direct",
@@ -64,7 +64,7 @@ lexical/statistical cues. Hard fact-lock: any `preserve_facts` token altered or 
 
 ```json
 {
-  "subject": "v1 API deprecation — action required by March 31",
+  "subject": "v1 API deprecation - action required by March 31",
   "draft": "The v1 API shuts down March 31. The payments team must migrate before then.",
   "audit": [
     {
@@ -86,7 +86,7 @@ lexical/statistical cues. Hard fact-lock: any `preserve_facts` token altered or 
 
 ## Canonical Prompt Flow
 
-### PASS 1 — Draft
+### PASS 1 - Draft
 
 > **Settings:** temperature=0.0, seed={seed}
 
@@ -126,7 +126,7 @@ I-hope/here-is communication artifacts. Preserve all facts. Return only the draf
 
 ---
 
-### PASS 2 — Expert Audit
+### PASS 2 - Expert Audit
 
 > **Settings:** temperature=0.0, seed={seed}
 > Calls `detect_patterns(draft, domain)` and `extract_facts(draft)`.
@@ -141,7 +141,7 @@ Your analysis is grounded in:
 - Hunting the Muse: practitioner heuristics for AI writing detection
 - East Central faculty resources: classroom detection signals
 
-Conservative policy: confidence < 0.7 → do not emit an Issue.
+Conservative policy: confidence < 0.7 -> do not emit an Issue.
 Return ONLY valid JSON. No prose outside the JSON object.
 ```
 
@@ -157,7 +157,7 @@ DRAFT TEXT TO AUDIT:
 ---
 
 TASK:
-1. FACT-LOCK PRE-PASS: extract all named entities, dates, numeric claims → facts_locked
+1. FACT-LOCK PRE-PASS: extract all named entities, dates, numeric claims -> facts_locked
 2. DOMAIN CLASSIFICATION: confirm or override DOMAIN hint
 3. PATTERN DETECTION: apply all 24 rubric rules; emit Issue for each match
    with confidence >= 0.7; escalate severity per rubric when_high conditions
@@ -174,7 +174,7 @@ TASK:
 
 ---
 
-### PASS 3 — Final
+### PASS 3 - Final
 
 > **Settings:** temperature=0.0, seed={seed}
 > Only runs if `blocked == false`.
@@ -228,12 +228,12 @@ fact_lock: true
 
 ## Examples
 
-### Short — API notification (technical domain)
+### Short - API notification (technical domain)
 
 **Input:**
 ```json
 {
-  "text": "I hope this helps! Here is an overview. The API deprecation — a crucial milestone — showcases our vibrant platform evolution. The future looks bright as we continue this journey toward excellence.",
+  "text": "I hope this helps! Here is an overview. The API deprecation - a crucial milestone - showcases our vibrant platform evolution. The future looks bright as we continue this journey toward excellence.",
   "intent": "Notify payments team of v1 API deprecation deadline",
   "context": "Internal engineering email",
   "tone": "direct",
@@ -248,11 +248,11 @@ fact_lock: true
 **Expected output:**
 ```json
 {
-  "subject": "v1 API deprecation — action required by March 31",
+  "subject": "v1 API deprecation - action required by March 31",
   "draft": "The v1 API shuts down March 31. The payments team must migrate before then. See /api/migration for the guide.",
   "audit": [
     {"rule_id": 19, "severity": "high", "text": "I hope this helps!"},
-    {"rule_id": 13, "severity": "high", "text": "—"},
+    {"rule_id": 13, "severity": "high", "text": "-"},
     {"rule_id": 7,  "severity": "high", "text": "crucial"},
     {"rule_id": 24, "severity": "high", "text": "The future looks bright"}
   ],
@@ -265,7 +265,7 @@ fact_lock: true
 
 ---
 
-### Medium — Stakeholder update (marketing domain)
+### Medium - Stakeholder update (marketing domain)
 
 **Input:**
 ```json
@@ -286,7 +286,7 @@ fact_lock: true
 
 ---
 
-### Long — Incident summary (technical domain)
+### Long - Incident summary (technical domain)
 
 **Input:**
 ```json
@@ -301,7 +301,7 @@ fact_lock: true
 }
 ```
 
-**Expected blocked:** true (P19 chatbot opener, P1 significance inflation, P7 AI vocab, P8 copula avoidance, P24 generic conclusion — all high)
+**Expected blocked:** true (P19 chatbot opener, P1 significance inflation, P7 AI vocab, P8 copula avoidance, P24 generic conclusion - all high)
 
 **Expected draft (pass 1 output):** Removes chatbot opener. Preserves all five preserve_facts tokens verbatim.
 

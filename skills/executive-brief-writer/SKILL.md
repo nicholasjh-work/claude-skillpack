@@ -19,16 +19,16 @@ seed: "EXEC_BRIEF_SEED_001"
 | Field | Type | Required |
 |---|---|---|
 | `title` | string | yes |
-| `situation` | string | yes — 2-3 sentence context |
+| `situation` | string | yes - 2-3 sentence context |
 | `recommendation` | string | yes |
-| `supporting_evidence` | string[] | yes — 3–5 data points |
+| `supporting_evidence` | string[] | yes - 3-5 data points |
 | `risks` | string[] | yes |
-| `ask` | string | yes — what exec needs to decide or approve |
+| `ask` | string | yes - what exec needs to decide or approve |
 | `preserve_facts` | string[] | yes |
 
 ```json
 {
-  "title": "Migrate billing to Stripe — Q2 decision",
+  "title": "Migrate billing to Stripe - Q2 decision",
   "situation": "Current billing provider charges 2.9% + $0.30 per transaction. Stripe charges 2.5% + $0.15. At $3M/month volume, the delta is $12,000/month.",
   "recommendation": "Migrate to Stripe by June 30.",
   "supporting_evidence": ["$12K/month savings = $144K/year", "Migration estimated 6 weeks engineering", "Zero-downtime cutover proven via 3 internal dry runs"],
@@ -40,17 +40,17 @@ seed: "EXEC_BRIEF_SEED_001"
 
 ## Prompt Flow
 
-**Pass 1:** Write tight, structured brief: Situation (2 sentences), Recommendation (1–2 sentences), Evidence (3–5 bullets), Risks (2–3 bullets), Ask (1 sentence). Remove: P1, P4, P5, P7, P14, P15, P22, P24.
+**Pass 1:** Write tight, structured brief: Situation (2 sentences), Recommendation (1-2 sentences), Evidence (3-5 bullets), Risks (2-3 bullets), Ask (1 sentence). Remove: P1, P4, P5, P7, P14, P15, P22, P24.
 
-**Pass 2:** "What in this brief wastes a busy exec's time?" → trim aggressively. Final should be under 350 words.
+**Pass 2:** "What in this brief wastes a busy exec's time?" -> trim aggressively. Final should be under 350 words.
 
 ## Examples
 
-### Short — situation sentence
+### Short - situation sentence
 **Before:** "The current billing infrastructure serves as a pivotal component in our financial ecosystem, underscoring the transformative potential of modernization."
 **After:** "Our billing provider charges $12K/month more than Stripe at current transaction volume."
 
-### Medium — evidence section
+### Medium - evidence section
 **Before:** "Additionally, industry observers have noted that payment infrastructure modernization fosters long-term scalability and vibrant growth opportunities."
 **After:** "Evidence: (1) $144K/year savings at $3M/month volume. (2) 6-week migration with 3 completed dry runs. (3) Zero-downtime cutover confirmed in staging."
 

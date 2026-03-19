@@ -22,16 +22,16 @@ seed: "RESUME_WRITER_SEED_001"
 | `role_title` | string | yes |
 | `company` | string | yes |
 | `dates` | string | yes |
-| `raw_notes` | string | yes — bullet-point brain dump |
-| `impact_facts` | string[] | yes — metrics to weave in |
-| `target_role` | string | no — used to tailor emphasis |
+| `raw_notes` | string | yes - bullet-point brain dump |
+| `impact_facts` | string[] | yes - metrics to weave in |
+| `target_role` | string | no - used to tailor emphasis |
 | `tone` | string | yes |
 
 ```json
 {
   "role_title": "Senior Software Engineer",
   "company": "Acme Corp",
-  "dates": "Jan 2022 – Mar 2024",
+  "dates": "Jan 2022 - Mar 2024",
   "raw_notes": "Led backend rewrite of the payments service. Worked with product and design. Reduced latency. Mentored 2 junior engineers. On-call rotation.",
   "impact_facts": ["latency dropped 60%", "zero downtime migration", "service handles 800K req/day"],
   "target_role": "Staff Engineer",
@@ -43,7 +43,7 @@ seed: "RESUME_WRITER_SEED_001"
 
 ```json
 {
-  "header": "Senior Software Engineer — Acme Corp (Jan 2022 – Mar 2024)",
+  "header": "Senior Software Engineer - Acme Corp (Jan 2022 - Mar 2024)",
   "bullets": [
     "Rewrote the payments service backend, cutting p99 latency by 60% and migrating 800K daily requests with zero downtime.",
     "Mentored 2 junior engineers through design review and on-call onboarding; both shipped independently within 3 months."
@@ -56,30 +56,30 @@ seed: "RESUME_WRITER_SEED_001"
 
 ## Prompt Flow
 
-**Pass 1:** For each raw note, generate a bullet that: starts with an action verb, contains a metric or outcome from `impact_facts`, avoids all banned phrases (RBL-001–020), and does not use AI vocabulary (P7).
+**Pass 1:** For each raw note, generate a bullet that: starts with an action verb, contains a metric or outcome from `impact_facts`, avoids all banned phrases (RBL-001-020), and does not use AI vocabulary (P7).
 
-**Pass 2 Audit:** "What makes these bullets sound AI-generated?" → list tells.
+**Pass 2 Audit:** "What makes these bullets sound AI-generated?" -> list tells.
 
 **Pass 2 Final:** Rewrite any flagged bullets. Verify every bullet has a number or concrete deliverable.
 
 ## Examples
 
-### Short — single bullet
+### Short - single bullet
 **Before:** "Responsible for improving the onboarding experience."
 **After:** "Cut new-engineer ramp time from 6 weeks to 3 by rewriting the onboarding runbook."
 
-### Medium — 3 bullets from notes
+### Medium - 3 bullets from notes
 **Before notes:** "Worked on the data pipeline. Helped with reliability. Did some mentoring."
 **After:**
 - "Built a Kafka-based event pipeline processing 2M events/day, replacing a polling approach that failed above 100K."
 - "Reduced on-call pages 60% by adding alert deduplication and a runbook for the top 5 incident types."
 - "Mentored 3 engineers on distributed systems design; all 3 shipped independently within 2 months."
 
-### Long — full role section
+### Long - full role section
 **Before notes:** "Led the platform team. Cross-functional work. Improved developer velocity. Streamlined processes. Launched new features. Worked with infra."
 **After:**
 - "Owned the platform team (6 engineers) responsible for the CI/CD pipeline, internal tooling, and dev environment."
-- "Cut CI build time from 18 minutes to 6 by parallelizing test suites — saving ~200 engineer-hours/month."
+- "Cut CI build time from 18 minutes to 6 by parallelizing test suites - saving ~200 engineer-hours/month."
 - "Shipped the internal feature-flag system used by 30+ engineers, enabling partial rollouts and eliminating coordinated deploys."
 - "Partnered with infra to migrate 40 services to Kubernetes; zero production incidents during the 8-month rollout."
 

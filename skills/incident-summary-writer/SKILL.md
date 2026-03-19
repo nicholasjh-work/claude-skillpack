@@ -19,8 +19,8 @@ seed: "INCIDENT_SEED_001"
 | Field | Type | Required |
 |---|---|---|
 | `incident_id` | string | yes |
-| `timeline_notes` | string | yes — raw notes with timestamps |
-| `severity` | string | yes — SEV1/SEV2/SEV3 |
+| `timeline_notes` | string | yes - raw notes with timestamps |
+| `severity` | string | yes - SEV1/SEV2/SEV3 |
 | `affected_systems` | string[] | yes |
 | `root_cause` | string | yes |
 | `action_items` | string[] | yes |
@@ -42,7 +42,7 @@ seed: "INCIDENT_SEED_001"
 
 ```json
 {
-  "title": "INC-2024-0314 — SEV2 — Checkout outage (March 14)",
+  "title": "INC-2024-0314 - SEV2 - Checkout outage (March 14)",
   "summary": "...",
   "timeline": [{"time": "9:41 PM", "event": "..."}, ...],
   "root_cause": "...",
@@ -55,7 +55,7 @@ seed: "INCIDENT_SEED_001"
 
 **Pass 1:** Structure into title, summary, timeline, root cause, impact, action items. Remove: significance inflation (P1), promotional adjectives (P4), weasel words (P5), AI vocab (P7), knowledge-cutoff disclaimers (P20), filler (P22), excessive hedging (P23).
 
-**Pass 2:** "What sounds like AI-generated filler in this report?" → final clean rewrite.
+**Pass 2:** "What sounds like AI-generated filler in this report?" -> final clean rewrite.
 
 ## Examples
 

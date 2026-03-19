@@ -37,8 +37,8 @@ seed: "EMAIL_SEED_001"
 
 ```json
 {
-  "subject": "v1 API deprecation — cutover required by March 31",
-  "body": "The v1 API endpoints will be shut off March 31. If your team is still using them, migrate before then — the guide is at /api/migration. Reply here or ping me in Slack if you hit anything unexpected.",
+  "subject": "v1 API deprecation - cutover required by March 31",
+  "body": "The v1 API endpoints will be shut off March 31. If your team is still using them, migrate before then - the guide is at /api/migration. Reply here or ping me in Slack if you hit anything unexpected.",
   "patterns_removed": [7, 19, 22],
   "word_count": 52
 }
@@ -48,23 +48,23 @@ seed: "EMAIL_SEED_001"
 
 **Pass 1:** Apply core email rewrite. Remove: chatbot openers (P19), sycophancy (P21), em dashes (P13), AI vocab (P7), filler (P22), negative parallelisms (P9), excessive hedging (P23), copula avoidance (P8). Preserve `key_facts`.
 
-**Pass 2 Audit:** "What makes this email so obviously AI-generated?" — list remaining tells.
+**Pass 2 Audit:** "What makes this email so obviously AI-generated?" - list remaining tells.
 
 **Pass 2 Final:** Rewrite removing remaining tells. Keep under 150 words unless facts require more.
 
 ## Examples
 
-### Short — API notification
+### Short - API notification
 **Before:** "I hope this email finds you well! I wanted to reach out regarding the crucial API deprecation timeline, which stands as a pivotal moment in our infrastructure evolution."
-**After:** "The v1 API endpoints shut down March 31. Migrate before then — guide at /api/migration."
+**After:** "The v1 API endpoints shut down March 31. Migrate before then - guide at /api/migration."
 
-### Medium — Status update
+### Medium - Status update
 **Before:** "Just wanted to circle back and provide an update. At this point in time, we have completed the initial phase of the project."
 **After:** "Quick status: phase 1 is done. Phase 2 (auth integration) starts Monday. We're on track for the April 15 launch."
 
-### Long — Escalation with context
+### Long - Escalation with context
 **Before:** "Great question regarding the outage. Additionally, industry observers have noted that distributed systems face challenges typical of complex environments. The future looks bright."
-**After:** "The March 14 outage (9:41–11:23 PM PT) was a misconfigured load balancer after the 11 PM deploy. 4,300 requests timed out. Fix: config rollback. Post-mortem at [link]. I've added a deploy checklist item to catch this going forward."
+**After:** "The March 14 outage (9:41-11:23 PM PT) was a misconfigured load balancer after the 11 PM deploy. 4,300 requests timed out. Fix: config rollback. Post-mortem at [link]. I've added a deploy checklist item to catch this going forward."
 
 ## Unit Tests
 
@@ -73,7 +73,7 @@ seed: "EMAIL_SEED_001"
 import pytest
 from ai_pattern_scrubber import detect_patterns
 
-SHORT_FINAL = "The v1 API endpoints shut down March 31. Migrate before then — guide at /api/migration."
+SHORT_FINAL = "The v1 API endpoints shut down March 31. Migrate before then - guide at /api/migration."
 MEDIUM_FINAL = "Quick status: phase 1 is done. Phase 2 (auth integration) starts Monday. On track for April 15."
 LONG_FINAL = (
     "The March 14 outage (9:41\u201311:23 PM PT) was a misconfigured load balancer. "

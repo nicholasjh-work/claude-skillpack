@@ -1,4 +1,4 @@
-# Scholar Editor — Implementation Notes & Acceptance Criteria
+# Scholar Editor - Implementation Notes & Acceptance Criteria
 **Version:** 0.1.0
 
 ---
@@ -38,11 +38,11 @@
 
 | Gate | Tool | Failure condition |
 |---|---|---|
-| Pattern coverage | `mock_detector.py --selftest` | Coverage < 0.90 → exit 1 |
-| Fixture coverage | `tools/check_pattern_coverage.py` | Coverage < 0.90 → exit 1 |
-| Gating correctness | `pytest TestGating` | blocked fixture has no high hit → fail |
-| Determinism | `pytest TestDeterminism` | Hit lists differ across calls → fail |
-| Fact preservation | `pytest TestFactPreservation` | preserve_facts token absent → fail |
+| Pattern coverage | `mock_detector.py --selftest` | Coverage < 0.90 -> exit 1 |
+| Fixture coverage | `tools/check_pattern_coverage.py` | Coverage < 0.90 -> exit 1 |
+| Gating correctness | `pytest TestGating` | blocked fixture has no high hit -> fail |
+| Determinism | `pytest TestDeterminism` | Hit lists differ across calls -> fail |
+| Fact preservation | `pytest TestFactPreservation` | preserve_facts token absent -> fail |
 
 All CI steps use `continue-on-error: false`. A single failure blocks the merge.
 

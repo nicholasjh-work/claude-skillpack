@@ -19,8 +19,8 @@ seed: "STAKEHOLDER_SEED_001"
 | Field | Type | Required |
 |---|---|---|
 | `project_name` | string | yes |
-| `period` | string | yes — e.g., "Week of March 18" |
-| `rag_status` | string | yes — RED/AMBER/GREEN |
+| `period` | string | yes - e.g., "Week of March 18" |
+| `rag_status` | string | yes - RED/AMBER/GREEN |
 | `completed` | string[] | yes |
 | `in_progress` | string[] | yes |
 | `risks` | string[] | yes |
@@ -34,7 +34,7 @@ seed: "STAKEHOLDER_SEED_001"
   "rag_status": "AMBER",
   "completed": ["Auth integration shipped to staging", "Load test: 50K RPS sustained"],
   "in_progress": ["Payment provider switchover (60%)"],
-  "risks": ["Payment provider API docs are incomplete — may delay switchover by 1 week"],
+  "risks": ["Payment provider API docs are incomplete - may delay switchover by 1 week"],
   "decisions_needed": ["Approve 1-week delay or re-scope?"],
   "preserve_facts": ["50K RPS", "March 31 deadline", "payment provider: Stripe"]
 }
@@ -58,7 +58,7 @@ seed: "STAKEHOLDER_SEED_001"
 
 ### Long (RED escalation)
 **Before:** "It is widely believed that the project has encountered some headwinds, and industry observers have noted that integration challenges are not uncommon."
-**After:** "RED: Stripe's 3DS2 sandbox is returning 500s on all card-not-present transactions. We're blocked on the payment switchover. Unblocking options: (1) use Stripe test cards only through March 27, (2) switch to Adyen for the launch — needs exec sign-off by EOD Monday."
+**After:** "RED: Stripe's 3DS2 sandbox is returning 500s on all card-not-present transactions. We're blocked on the payment switchover. Unblocking options: (1) use Stripe test cards only through March 27, (2) switch to Adyen for the launch - needs exec sign-off by EOD Monday."
 
 ## Unit Tests
 
@@ -67,7 +67,7 @@ seed: "STAKEHOLDER_SEED_001"
 from ai_pattern_scrubber import detect_patterns
 
 GREEN = "GREEN: Auth shipped to staging. Load test passed at 50K RPS. On track for March 31."
-AMBER = "AMBER: Payment provider API docs incomplete. Switchover at 60% — may slip 1 week. Decision needed Thursday."
+AMBER = "AMBER: Payment provider API docs incomplete. Switchover at 60% - may slip 1 week. Decision needed Thursday."
 
 def test_green_no_promotional_language():
     assert not [h for h in detect_patterns(GREEN) if h.id == 4]

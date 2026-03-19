@@ -57,15 +57,15 @@ seed: "REQ_DOC_SEED_001"
 
 ## Examples
 
-### Short — single AC
+### Short - single AC
 **Before:** "The system should provide a seamless and intuitive experience for saving payment methods, enhancing user satisfaction."
 **After:** "AC: User can save a card at checkout with a single click. Saved card appears on next visit pre-selected."
 
-### Medium — user story
+### Medium - user story
 **Before:** "As a user, I want to be able to leverage the platform's groundbreaking capabilities to manage my payment information in a dynamic way."
 **After:** "US-001: As a returning user, I can view all saved cards, select one at checkout, and delete any card from my account settings."
 
-### Long — constraints section
+### Long - constraints section
 **Before:** "The solution must be built in a way that ensures compliance with all relevant regulatory frameworks and fosters trust among users."
 **After:** "Constraints: (1) Card data must be tokenized via Stripe; no raw PANs stored server-side. (2) PCI-DSS SAQ A compliance required before launch. (3) Each user may store up to 5 cards."
 

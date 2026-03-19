@@ -50,7 +50,7 @@ seed: "MEMO_SEED_001"
 
 **Pass 1:** Extract decisions, actions, open questions. Assign owners where named in notes. Remove: chatbot artifacts (P19), sycophancy (P21), filler (P22), generic conclusions (P24), AI vocab (P7), significance inflation (P1).
 
-**Pass 2:** Verify every action item has an owner and due date (mark TBD if not stated — do not fabricate).
+**Pass 2:** Verify every action item has an owner and due date (mark TBD if not stated - do not fabricate).
 
 ## Examples
 
@@ -64,7 +64,7 @@ seed: "MEMO_SEED_001"
 **Before notes:** "big discussion about launch. ultimately decided soft launch. eng will set feature flags. pm will brief support. support training might be needed."
 **After:**
 - **Decision:** Soft launch at 5% traffic on March 25.
-- **Actions:** Dev — set feature flags by March 21. Sarah — brief support by March 22.
+- **Actions:** Dev - set feature flags by March 21. Sarah - brief support by March 22.
 - **Open question:** Does support need additional training before full rollout?
 
 ### Long

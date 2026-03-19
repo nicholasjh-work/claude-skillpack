@@ -1,8 +1,8 @@
-# ai-pattern-scrubber — Component Specification
+# ai-pattern-scrubber - Component Specification
 
 **Version:** 1.0.0
 **Source:** [`blader/humanizer`](https://github.com/blader/humanizer) SKILL.md v2.2.0
-**Basis:** Wikipedia "Signs of AI Writing" — WikiProject AI Cleanup
+**Basis:** Wikipedia "Signs of AI Writing" - WikiProject AI Cleanup
 
 ---
 
@@ -55,12 +55,12 @@ def annotate_text(text: str) -> AnnotatedDocument:
 
     Returns:
         AnnotatedDocument with fields:
-          - original_text: str          — the unmodified input
-          - hits: list[PatternHit]      — all pattern hits, sorted by span_start
-          - pattern_counts: dict[int, int] — hit count per pattern id (1–24)
-          - severity_summary: dict[str, int] — counts per severity level
-          - coverage: float             — fraction of chars inside at least one hit span
-          - has_hits: bool              — True if any hits found
+          - original_text: str          - the unmodified input
+          - hits: list[PatternHit]      - all pattern hits, sorted by span_start
+          - pattern_counts: dict[int, int] - hit count per pattern id (1-24)
+          - severity_summary: dict[str, int] - counts per severity level
+          - coverage: float             - fraction of chars inside at least one hit span
+          - has_hits: bool              - True if any hits found
 
     Raises:
         ValueError, TextTooLongError (same as detect_patterns).
@@ -79,13 +79,13 @@ from typing import Literal
 
 @dataclass
 class PatternHit:
-    id: int                              # Pattern number 1–24
+    id: int                              # Pattern number 1-24
     label: str                           # Human-readable pattern name
     span_start: int                      # Inclusive char offset into original text
     span_end: int                        # Exclusive char offset into original text
     severity: Literal["low", "med", "high"]
-    confidence: float                    # 0.0–1.0; lexical matches = 1.0,
-                                         # heuristic/contextual = 0.5–0.9
+    confidence: float                    # 0.0-1.0; lexical matches = 1.0,
+                                         # heuristic/contextual = 0.5-0.9
     rationale: str                       # One-sentence explanation of why it triggered
     matched_text: str                    # text[span_start:span_end]
     category: str                        # "CONTENT" | "LANGUAGE" | "STYLE" |
@@ -118,7 +118,7 @@ class PatternHit:
 
 ---
 
-## 4. Detection Heuristics (Patterns 1–24)
+## 4. Detection Heuristics (Patterns 1-24)
 
 For each pattern: **category, severity, detection rule, positive example** (should trigger), **negative example** (should NOT trigger).
 
@@ -128,7 +128,7 @@ For each pattern: **category, severity, detection rule, positive example** (shou
 
 ---
 
-#### Pattern 1 — Undue Emphasis on Significance, Legacy, and Broader Trends
+#### Pattern 1 - Undue Emphasis on Significance, Legacy, and Broader Trends
 
 - **Severity:** `high`
 - **Rule:** Regex match on `\b(stands? as|serves? as|marks? a pivotal|testament to|underscores? (the|its)|highlights? (the|its) (importance|significance)|shaping the|reflects? broader|setting the stage|indelible mark|deeply rooted|focal point|enduring legacy)\b` (case-insensitive)
@@ -138,7 +138,7 @@ For each pattern: **category, severity, detection rule, positive example** (shou
 
 ---
 
-#### Pattern 2 — Undue Emphasis on Notability and Media Coverage
+#### Pattern 2 - Undue Emphasis on Notability and Media Coverage
 
 - **Severity:** `med`
 - **Rule:** Regex `\b(featured in|covered by|as reported by|cited in|independent coverage|active social media presence|over \d[\d,]+ followers|written by a leading expert)\b` combined with a list of outlet names (`New York Times|BBC|Wired|Forbes|The Verge` etc.)
@@ -148,17 +148,17 @@ For each pattern: **category, severity, detection rule, positive example** (shou
 
 ---
 
-#### Pattern 3 — Superficial Analyses with -ing Endings
+#### Pattern 3 - Superficial Analyses with -ing Endings
 
 - **Severity:** `med`
-- **Rule:** Regex `,\s*(highlighting|underscoring|emphasizing|showcasing|symbolizing|reflecting|cultivating|fostering|encompassing|contributing to)\b` — a trailing participial clause tacked onto a complete sentence (comma + -ing verb)
+- **Rule:** Regex `,\s*(highlighting|underscoring|emphasizing|showcasing|symbolizing|reflecting|cultivating|fostering|encompassing|contributing to)\b` - a trailing participial clause tacked onto a complete sentence (comma + -ing verb)
 - **Confidence:** 0.85; reduce to 0.6 if the -ing phrase contains a concrete measurable claim
 - **Positive:** `"The temple uses blue and gold colors, symbolizing the region's deep connection to the land."`
 - **Negative:** `"The temple uses blue and gold colors. The architect cited local bluebonnets as the reference."`
 
 ---
 
-#### Pattern 4 — Promotional and Advertisement-like Language
+#### Pattern 4 - Promotional and Advertisement-like Language
 
 - **Severity:** `high`
 - **Rule:** Lexical match against banned adjective list: `\b(boasts?|vibrant|nestled|breathtaking|stunning|must-visit|groundbreaking|renowned|nestled in the heart of|rich (cultural )?heritage|profound (impact|effect))\b`
@@ -168,7 +168,7 @@ For each pattern: **category, severity, detection rule, positive example** (shou
 
 ---
 
-#### Pattern 5 — Vague Attributions and Weasel Words
+#### Pattern 5 - Vague Attributions and Weasel Words
 
 - **Severity:** `med`
 - **Rule:** Regex `\b(experts? (say|argue|believe|suggest)|industry (reports?|observers?)|some (critics?|sources?|experts?)|observers? have (noted|cited)|it (is|has been) (widely|generally) (believed|noted|argued))\b`
@@ -178,7 +178,7 @@ For each pattern: **category, severity, detection rule, positive example** (shou
 
 ---
 
-#### Pattern 6 — Outline-like "Challenges and Future Prospects" Sections
+#### Pattern 6 - Outline-like "Challenges and Future Prospects" Sections
 
 - **Severity:** `med`
 - **Rule:** Heading/section detection: regex on `(?i)^#+\s*(challenges?|future (prospects?|outlook)|despite (its|these) (challenges?|limitations?))`; OR within body text: `despite (its|these) \w+,? \w+ faces? (several )?(challenges?|issues?)` followed within 200 chars by `despite these challenges`
@@ -192,17 +192,17 @@ For each pattern: **category, severity, detection rule, positive example** (shou
 
 ---
 
-#### Pattern 7 — Overused "AI Vocabulary" Words
+#### Pattern 7 - Overused "AI Vocabulary" Words
 
 - **Severity:** `high`
 - **Rule:** Count occurrences of a curated 22-word list: `{additionally, align with, crucial, delve, emphasizing, enduring, enhance, fostering, garner, highlight, interplay, intricate, intricacies, key, landscape, pivotal, showcase, tapestry, testament, underscore, valuable, vibrant}`. Trigger if **3 or more** distinct list words appear in 200-char window; OR if `delve` or `tapestry` (abstract noun sense) appears anywhere.
-- **Confidence:** 1.0 for `delve`/`tapestry`; 0.85 for 3+ co-occurrences; 0.5 for 1–2 occurrences
+- **Confidence:** 1.0 for `delve`/`tapestry`; 0.85 for 3+ co-occurrences; 0.5 for 1-2 occurrences
 - **Positive:** `"Additionally, the enduring testament to Italian influence showcases how crucial the interplay between landscape and tapestry remains."`
 - **Negative:** `"Somali cuisine includes camel meat. Pasta arrived during Italian colonization and is still common in the south."`
 
 ---
 
-#### Pattern 8 — Avoidance of "is"/"are" (Copula Avoidance)
+#### Pattern 8 - Avoidance of "is"/"are" (Copula Avoidance)
 
 - **Severity:** `high`
 - **Rule:** Regex `\b(serves? as (a|an|the)|stands? as (a|an|the)|marks? (a|an|the)|represents? (a|an|the)|boasts? (a|an|the)|features? (a|an|the)|offers? (a|an|the))\b` where the following noun phrase would be grammatically replaceable by `is/are/has`
@@ -212,7 +212,7 @@ For each pattern: **category, severity, detection rule, positive example** (shou
 
 ---
 
-#### Pattern 9 — Negative Parallelisms
+#### Pattern 9 - Negative Parallelisms
 
 - **Severity:** `med`
 - **Rule:** Regex `\b(not (only|just|merely).{0,60}(but (also)?|it['']?s)\b|it['']?s not (just|only|merely) about.{0,80}it['']?s (about)?)\b`
@@ -222,31 +222,31 @@ For each pattern: **category, severity, detection rule, positive example** (shou
 
 ---
 
-#### Pattern 10 — Rule of Three Overuse
+#### Pattern 10 - Rule of Three Overuse
 
 - **Severity:** `med`
 - **Rule:** Count noun phrases in a list: regex `(\w[\w\s]*,\s*\w[\w\s]*,\s*and \w[\w\s]*)` within a single sentence. Trigger if 2 or more such triadic lists appear in a 300-char window, or if the same sentence ends in `X, Y, and Z` where X/Y/Z are clearly abstract/parallel.
 - **Confidence:** 0.8 for double-triad; 0.6 for single triad with abstract nouns
 - **Positive:** `"The event features keynote sessions, panel discussions, and networking opportunities. Attendees can expect innovation, inspiration, and industry insights."`
-- **Negative:** `"The conference has talks, panels, and a dinner — plus time to visit the vendor floor."`
+- **Negative:** `"The conference has talks, panels, and a dinner - plus time to visit the vendor floor."`
 
 ---
 
-#### Pattern 11 — Elegant Variation (Synonym Cycling)
+#### Pattern 11 - Elegant Variation (Synonym Cycling)
 
 - **Severity:** `low`
-- **Rule:** Within a 300-char window, detect 3+ distinct referring expressions for the same entity (noun phrase + synonyms). Heuristic: POS-tag sequence `DET? ADJ* NOUN` that changes label but maintains referential identity. Practical trigger: sequence `protagonist…main character…central figure…hero` (configurable synonym groups loaded from config.yaml).
+- **Rule:** Within a 300-char window, detect 3+ distinct referring expressions for the same entity (noun phrase + synonyms). Heuristic: POS-tag sequence `DET? ADJ* NOUN` that changes label but maintains referential identity. Practical trigger: sequence `protagonist...main character...central figure...hero` (configurable synonym groups loaded from config.yaml).
 - **Confidence:** 0.75 (heuristic); 0.95 when synonym group is explicitly matched
 - **Positive:** `"The protagonist faces many challenges. The main character must overcome obstacles. The central figure triumphs. The hero returns."`
 - **Negative:** `"The protagonist faces challenges but triumphs and returns home."`
 
 ---
 
-#### Pattern 12 — False Ranges
+#### Pattern 12 - False Ranges
 
 - **Severity:** `low`
-- **Rule:** Regex `from .{3,40} to .{3,40}, from .{3,40} to .{3,40}` (compound from–to–from–to structure). Also single: `from (the)? \w+ (of|in) .{5,50} to (the)? \w+ (of|in)` where operands are not on a numeric or temporal scale.
-- **Confidence:** 0.9 for compound; 0.65 for single non-numeric `from…to`
+- **Rule:** Regex `from .{3,40} to .{3,40}, from .{3,40} to .{3,40}` (compound from-to-from-to structure). Also single: `from (the)? \w+ (of|in) .{5,50} to (the)? \w+ (of|in)` where operands are not on a numeric or temporal scale.
+- **Confidence:** 0.9 for compound; 0.65 for single non-numeric `from...to`
 - **Positive:** `"Our journey has taken us from the singularity of the Big Bang to the grand cosmic web, from the birth of stars to the dance of dark matter."`
 - **Negative:** `"Marathon times range from under two hours for elites to over six hours for recreational runners."`
 
@@ -256,27 +256,27 @@ For each pattern: **category, severity, detection rule, positive example** (shou
 
 ---
 
-#### Pattern 13 — Em Dash Overuse
+#### Pattern 13 - Em Dash Overuse
 
 - **Severity:** `high`
-- **Rule:** Count `—` (U+2014) occurrences. Trigger if count > 2 per 300-char window, or if em dash appears more than once in a single sentence.
+- **Rule:** Count `-` (U+2014) occurrences. Trigger if count > 2 per 300-char window, or if em dash appears more than once in a single sentence.
 - **Confidence:** 1.0
-- **Positive:** `"The term is promoted by Dutch institutions—not by the people themselves—yet this mislabeling continues—even in official documents."`
+- **Positive:** `"The term is promoted by Dutch institutions-not by the people themselves-yet this mislabeling continues-even in official documents."`
 - **Negative:** `"The term is promoted by Dutch institutions, not by the people themselves, and it continues in official documents."`
 
 ---
 
-#### Pattern 14 — Overuse of Boldface
+#### Pattern 14 - Overuse of Boldface
 
 - **Severity:** `med`
-- **Rule:** Regex `\*\*[^*]{2,60}\*\*` — count markdown bold spans. Trigger if > 3 bold spans in 300-char window, or if consecutive sentences both contain bold spans.
+- **Rule:** Regex `\*\*[^*]{2,60}\*\*` - count markdown bold spans. Trigger if > 3 bold spans in 300-char window, or if consecutive sentences both contain bold spans.
 - **Confidence:** 1.0
 - **Positive:** `"It blends **OKRs**, **KPIs**, and **Balanced Scorecard (BSC)** into **a unified framework**."`
 - **Negative:** `"It blends OKRs, KPIs, and the Balanced Scorecard into a unified framework."`
 
 ---
 
-#### Pattern 15 — Inline-Header Vertical Lists
+#### Pattern 15 - Inline-Header Vertical Lists
 
 - **Severity:** `med`
 - **Rule:** Regex on list items: `^[-*]\s+\*\*[A-Z][^*]{2,50}:\*\*` (markdown bullet + bold title + colon). Trigger on 2+ consecutive such items.
@@ -291,17 +291,17 @@ For each pattern: **category, severity, detection rule, positive example** (shou
 
 ---
 
-#### Pattern 16 — Title Case in Headings
+#### Pattern 16 - Title Case in Headings
 
 - **Severity:** `med`
-- **Rule:** Regex `^#{1,6}\s+([A-Z][a-z]+ ){2,}[A-Z]` — markdown heading where 3+ consecutive words are title-cased. Exclude known proper nouns by comparing against a proper-noun allowlist.
+- **Rule:** Regex `^#{1,6}\s+([A-Z][a-z]+ ){2,}[A-Z]` - markdown heading where 3+ consecutive words are title-cased. Exclude known proper nouns by comparing against a proper-noun allowlist.
 - **Confidence:** 0.9
 - **Positive:** `"## Strategic Negotiations And Global Partnerships\n"`
 - **Negative:** `"## Strategic negotiations and global partnerships\n"`
 
 ---
 
-#### Pattern 17 — Emojis
+#### Pattern 17 - Emojis
 
 - **Severity:** `low`
 - **Rule:** Unicode emoji regex `[\U0001F300-\U0001FFFF\u2600-\u27BF]` matched in heading lines (`^#+`) or at list-item start (`^[-*]\s*[\U0001F300-\U0001FFFF]`)
@@ -311,10 +311,10 @@ For each pattern: **category, severity, detection rule, positive example** (shou
 
 ---
 
-#### Pattern 18 — Curly Quotation Marks
+#### Pattern 18 - Curly Quotation Marks
 
 - **Severity:** `low`
-- **Rule:** Regex `[\u201C\u201D\u2018\u2019]` — detect Unicode curly/smart quotes
+- **Rule:** Regex `[\u201C\u201D\u2018\u2019]` - detect Unicode curly/smart quotes
 - **Confidence:** 1.0
 - **Positive:** `'He said \u201cthe project is on track\u201d but others disagreed.'`
 - **Negative:** `'He said "the project is on track" but others disagreed.'`
@@ -325,7 +325,7 @@ For each pattern: **category, severity, detection rule, positive example** (shou
 
 ---
 
-#### Pattern 19 — Collaborative Communication Artifacts
+#### Pattern 19 - Collaborative Communication Artifacts
 
 - **Severity:** `high`
 - **Rule:** Regex `\b(I hope (this|that) helps|let me know if you('d| would) like|here is (a|an|the|your)|of course!|certainly!|feel free to|would you like me to|is there anything else)\b` (case-insensitive)
@@ -335,7 +335,7 @@ For each pattern: **category, severity, detection rule, positive example** (shou
 
 ---
 
-#### Pattern 20 — Knowledge-Cutoff Disclaimers
+#### Pattern 20 - Knowledge-Cutoff Disclaimers
 
 - **Severity:** `low`
 - **Rule:** Regex `\b(as of (my )?(last |knowledge )?(update|cutoff|training)|up to my (last )?training|based on available information|while specific details (are|remain) (limited|scarce)|it (appears?|seems?) to have been)\b` (case-insensitive)
@@ -345,7 +345,7 @@ For each pattern: **category, severity, detection rule, positive example** (shou
 
 ---
 
-#### Pattern 21 — Sycophantic/Servile Tone
+#### Pattern 21 - Sycophantic/Servile Tone
 
 - **Severity:** `high`
 - **Rule:** Regex `\b(great question!|excellent (point|question)|you('re| are) absolutely right|that('s| is) (an )?excellent|good point!|what a (great|thoughtful))\b` (case-insensitive)
@@ -359,15 +359,15 @@ For each pattern: **category, severity, detection rule, positive example** (shou
 
 ---
 
-#### Pattern 22 — Filler Phrases
+#### Pattern 22 - Filler Phrases
 
 - **Severity:** `med`
 - **Rule:** Exact phrase match against filler list (case-insensitive):
-  - `in order to` (→ "to")
-  - `due to the fact that` (→ "because")
-  - `at this point in time` (→ "now")
-  - `in the event that` (→ "if")
-  - `has the ability to` (→ "can")
+  - `in order to` (-> "to")
+  - `due to the fact that` (-> "because")
+  - `at this point in time` (-> "now")
+  - `in the event that` (-> "if")
+  - `has the ability to` (-> "can")
   - `it is important to note that`
   - `it should be noted that`
   - `needless to say`
@@ -379,7 +379,7 @@ For each pattern: **category, severity, detection rule, positive example** (shou
 
 ---
 
-#### Pattern 23 — Excessive Hedging
+#### Pattern 23 - Excessive Hedging
 
 - **Severity:** `med`
 - **Rule:** Count stacked hedge modals/adverbs in a single clause. Trigger if 3+ hedge tokens from `{could, might, may, possibly, potentially, arguably, perhaps, likely, seemingly, apparently, somewhat}` appear within a 100-char window.
@@ -389,7 +389,7 @@ For each pattern: **category, severity, detection rule, positive example** (shou
 
 ---
 
-#### Pattern 24 — Generic Positive Conclusions
+#### Pattern 24 - Generic Positive Conclusions
 
 - **Severity:** `high`
 - **Rule:** Regex targeting closing-paragraph clichés: `\b(the future (looks|is) bright|exciting times (lie|are) ahead|continue(s)? (this|our|the) journey (toward|towards)|(in )?(the )?right direction|we look forward to|a (major|significant) step forward|the possibilities are endless|sky['']?s the limit)\b` at or near end of document (last 20% of text length), or anywhere in isolation.
@@ -405,8 +405,8 @@ For each pattern: **category, severity, detection rule, positive example** (shou
 # tests/test_scrubber.py
 """
 30 unit tests for ai-pattern-scrubber.
-  - Tests 1–24: one targeted test per pattern (positive detection).
-  - Tests 25–30: adversarial / negative cases (should NOT trigger).
+  - Tests 1-24: one targeted test per pattern (positive detection).
+  - Tests 25-30: adversarial / negative cases (should NOT trigger).
 
 Run: pytest tests/test_scrubber.py -v
 """
@@ -432,7 +432,7 @@ def assert_no_hits(text: str, pattern_id: int):
 
 
 # ──────────────────────────────────────────────
-# PATTERN TESTS (1–24)
+# PATTERN TESTS (1-24)
 # ──────────────────────────────────────────────
 
 class TestContentPatterns:
@@ -602,7 +602,7 @@ class TestContentPatterns:
 
 
 # ──────────────────────────────────────────────
-# ADVERSARIAL / NEGATIVE TESTS (25–30)
+# ADVERSARIAL / NEGATIVE TESTS (25-30)
 # ──────────────────────────────────────────────
 
 class TestAdversarialCases:
@@ -671,7 +671,7 @@ class TestAnnotateTextContract:
 
 ---
 
-## 6. Integration Test — Pipeline Coverage Assertion
+## 6. Integration Test - Pipeline Coverage Assertion
 
 ```python
 # tests/test_integration_pipeline.py
@@ -758,7 +758,7 @@ class TestIntegrationPipeline:
     def test_annotate_coverage_metric(self):
         """annotate_text coverage should reflect majority of doc is flagged."""
         doc = annotate_text(SYNTHETIC_AI_DOC)
-        # The synthetic doc is intentionally dense — expect > 30% char coverage
+        # The synthetic doc is intentionally dense - expect > 30% char coverage
         assert doc.coverage > 0.30, (
             f"Expected >30% char coverage on dense AI doc, got {doc.coverage:.1%}"
         )
@@ -855,11 +855,11 @@ class PatternConfigError(RuntimeError):
 
 ## 9. Non-Goals (Out of Scope for This Component)
 
-- **Rewriting** — handled by `humanizer-flow` and `nick-mode-writing-standard`
-- **LLM inference** — this component is fully deterministic; no API calls
-- **Language detection** — English only; no i18n
-- **Sentence tokenisation** — basic heuristics only; no full NLP pipeline dependency
-- **Diff rendering** — handled by `humanizer-flow/diff_formatter.py`
+- **Rewriting** - handled by `humanizer-flow` and `nick-mode-writing-standard`
+- **LLM inference** - this component is fully deterministic; no API calls
+- **Language detection** - English only; no i18n
+- **Sentence tokenisation** - basic heuristics only; no full NLP pipeline dependency
+- **Diff rendering** - handled by `humanizer-flow/diff_formatter.py`
 
 ---
 
@@ -871,4 +871,4 @@ class PatternConfigError(RuntimeError):
 
 ---
 
-*Source of truth: [SKILL.md v2.2.0](https://github.com/blader/humanizer/blob/main/SKILL.md) — Wikipedia "Signs of AI Writing"*
+*Source of truth: [SKILL.md v2.2.0](https://github.com/blader/humanizer/blob/main/SKILL.md) - Wikipedia "Signs of AI Writing"*
