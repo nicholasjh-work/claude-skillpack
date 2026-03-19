@@ -1,17 +1,11 @@
 ---
 name: scholar-editor
-version: 0.1.0
+version: "2.0.0"
 description: "Evidence-based editorial pipeline that detects and removes AI writing patterns using a research-grounded rubric, preserves author facts, and gates on high-severity issues."
 allowed-tools:
   - Read
   - Write
   - Bash
-temperature: 0.0
-seed: SCHOLAR_SEED_001
-block_on_high_severity: true
-fact_lock: true
-humanizer_patterns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
-nick_mode_profile: default
 ---
 
 # scholar-editor
@@ -318,4 +312,31 @@ Fix: config rollback at 11:23 PM. Post-mortem at [link]. Deploy checklist update
 
 | Version | Change |
 |---|---|
+| 2.0.0 | Add research-grounded patterns P25-P38; add Reference Files section; update load instruction |
 | 0.1.0 | Initial Scholar Editor release; replaces Humanizer two-pass flow; adds Expert Audit pass |
+
+---
+
+## Runtime Configuration
+
+```yaml
+version: "2.0.0"
+temperature: 0.0
+seed: SCHOLAR_SEED_001
+block_on_high_severity: true
+fact_lock: true
+humanizer_patterns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
+nick_mode_profile: default
+```
+
+Load references/patterns-24.md (P1-P24) and references/patterns-research.md
+(P25-P38) before running any pass. Both files are required.
+
+---
+
+## Reference Files
+
+| File | When to load |
+|---|---|
+| `references/patterns-24.md` | Before Pass 1 in either mode (P1-P24) |
+| `references/patterns-research.md` | Before Pass 1 in either mode (P25-P38) |
