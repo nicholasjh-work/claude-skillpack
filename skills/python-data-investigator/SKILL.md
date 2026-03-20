@@ -4,6 +4,15 @@ description: Use Python to profile exports, find data quality issues, inspect ba
 version: "1.0.0"
 ---
 
+## Runtime Configuration
+```yaml
+version: "1.0.0"
+gotcha_pack: "sql-data-gotcha-pack"
+gotcha_pack_version: "1.0.0"
+gotcha_enforcement: "block_on_high"
+```
+
+
 # Purpose
 Use Python for disciplined file and extract investigation.
 
@@ -26,3 +35,15 @@ Use Python for disciplined file and extract investigation.
 2. Key findings
 3. Python script
 4. Recommended next checks
+
+## Gotcha Enforcement
+
+Apply these rules when writing profiling and investigation code.
+A HIGH violation in generated code must be corrected. MEDIUM violations
+must appear in the findings summary with an explanation.
+
+| ID   | Sev    | Check                                                                              |
+|------|--------|------------------------------------------------------------------------------------|
+| G003 | HIGH   | Every mean/sum/aggregation documents its NA/NaN behavior (skipna, fillna, or note) |
+| G009 | MEDIUM | Null rate check is mandatory for every measure column, not optional                |
+| G012 | HIGH   | Before comparing two datasets, confirm they share the same grain, period, and filters |
