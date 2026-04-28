@@ -18,7 +18,7 @@
 
 ### What is this?
 
-Claude Skillforge is a library of 30 battle-tested Claude Skills built for enterprise analytics, data engineering, professional writing, and career tools. Every skill in this repo has been used in production workflows, not written as a demo.
+Claude Skillforge is a multi-category library of production-ready Claude Skills. It is not a writing-skills repo. It spans foundational operating standards, data engineering, professional writing, and career tools - every skill battle-tested in real workflows, not written as a demo.
 
 Skills are instruction files that teach Claude how to perform specific tasks in a repeatable, high-quality way. They load on demand and cost roughly 100 tokens until activated.
 
@@ -49,6 +49,35 @@ Copy any skill folder into your Claude skills directory. Each folder is self-con
 
 ---
 
+### Spotlight
+
+<table>
+<tr>
+<td width="50%" align="center">
+
+**Skill of the Week**
+
+[![claude-token-watchdog](https://img.shields.io/badge/this%20week-claude--token--watchdog-0550ae?style=for-the-badge)](core/claude-token-watchdog/)
+
+Watches conversation length and auto-fires a continuation handoff before you hit the token limit. Companion to `claude-session-handoff`.
+
+</td>
+<td width="50%" align="center">
+
+**Skill of the Month**
+
+[![scholar-editor](https://img.shields.io/badge/april%202026-scholar--editor-b35900?style=for-the-badge)](writing/ai-prose-humanizer/)
+
+Detects and removes 38 documented AI writing patterns. Two modes: CLEAN for professional docs, VOICE for creative writing.
+
+</td>
+</tr>
+</table>
+
+> Updating the spotlight: edit this section in `README.md`. Replace the badge `label-name-color` and the description paragraph. Keep the `for-the-badge` style and category color (Core `0550ae`, Data Engineering `0d6e3f`, Writing `b35900`, Career `6f42c1`).
+
+---
+
 ### Core
 
 Foundational operating standards that govern how Claude behaves across all tasks.
@@ -58,6 +87,7 @@ Foundational operating standards that govern how Claude behaves across all tasks
 | [![claude-operator-standard](https://img.shields.io/badge/claude--operator--standard-0550ae?style=for-the-badge)](core/claude-operator-standard/) | Universal operating standard for Claude sessions. Governs communication style, troubleshooting method, output format, session behavior, and handoff protocol. |
 | [![claude-code-standard](https://img.shields.io/badge/claude--code--standard-0550ae?style=for-the-badge)](core/claude-code-standard/) | Technical execution standard for coding, SQL, Python, dbt, and data engineering. Covers stack preferences, documentation rules, testing, and analytics engineering guidance. |
 | [![claude-session-handoff](https://img.shields.io/badge/claude--session--handoff-0550ae?style=for-the-badge)](core/claude-session-handoff/) | Generates a structured handoff block that captures full technical state so a conversation can continue in a new window with zero re-explanation. |
+| [![claude-token-watchdog](https://img.shields.io/badge/claude--token--watchdog-0550ae?style=for-the-badge)](core/claude-token-watchdog/) | Watches conversation length and fires a continuation handoff at three thresholds (15 / 20 / 25 messages). Delegates to claude-session-handoff at the forced threshold to avoid hitting Claude token or context limits. Manual command: `/watchdog-check`. |
 
 ---
 

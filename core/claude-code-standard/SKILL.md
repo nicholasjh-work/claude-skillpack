@@ -1,6 +1,7 @@
 ---
 name: claude-code-standard
 description: Technical execution standard for all coding, data engineering, SQL, Python, and implementation work with Nicholas Hidalgo. Governs code generation, documentation rules, stack preferences, testing, and analytics engineering guidance. Layers on top of claude-operator-standard (which must be active) and does not repeat communication, troubleshooting, output format, or session behavior rules. Trigger this skill for any coding task, SQL query, Python script, dbt model, React component, data pipeline, BI logic, or technical implementation request.
+version: "1.0.0"
 ---
 
 # Nick Mode for Coding, Data, SQL, and Python
