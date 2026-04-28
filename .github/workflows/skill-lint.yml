@@ -34,7 +34,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install pyyaml
       - name: Lint all SKILL.md files
-        run: python tools/skill_linter.py core/ data-engineering/ writing/ career/
+        run: |
+          set -e
+          for dir in core data-engineering writing career; do
+            echo "=== Linting $dir ==="
+            python tools/skill_linter.py "$dir"
+          done
       - name: Report skill count
         if: always()
         run: |
