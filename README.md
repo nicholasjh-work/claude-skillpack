@@ -82,12 +82,17 @@ Detects and removes 38 documented AI writing patterns. Two modes: CLEAN for prof
 
 Foundational operating standards that govern how Claude behaves across all tasks.
 
-| Skill | What it does |
-|---|---|
-| [![claude-operator-standard](https://img.shields.io/badge/claude--operator--standard-0550ae?style=for-the-badge)](core/claude-operator-standard/) | Universal operating standard for Claude sessions. Governs communication style, troubleshooting method, output format, session behavior, and handoff protocol. |
-| [![claude-code-standard](https://img.shields.io/badge/claude--code--standard-0550ae?style=for-the-badge)](core/claude-code-standard/) | Technical execution standard for coding, SQL, Python, dbt, and data engineering. Covers stack preferences, documentation rules, testing, and analytics engineering guidance. |
-| [![claude-session-handoff](https://img.shields.io/badge/claude--session--handoff-0550ae?style=for-the-badge)](core/claude-session-handoff/) | Generates a structured handoff block that captures full technical state so a conversation can continue in a new window with zero re-explanation. |
-| [![claude-token-watchdog](https://img.shields.io/badge/claude--token--watchdog-0550ae?style=for-the-badge)](core/claude-token-watchdog/) | Watches conversation length and fires a continuation handoff at three thresholds (15 / 20 / 25 messages). Delegates to claude-session-handoff at the forced threshold to avoid hitting Claude token or context limits. Manual command: `/watchdog-check`. |
+<table>
+<thead>
+<tr><th>Skill</th><th>What it does</th></tr>
+</thead>
+<tbody>
+<tr><td><a href="core/claude-operator-standard/"><img src="https://img.shields.io/badge/claude--operator--standard-0550ae?style=for-the-badge" alt="claude-operator-standard"></a></td><td>Universal operating standard for Claude sessions. Governs communication style, troubleshooting method, output format, session behavior, and handoff protocol.</td></tr>
+<tr><td><a href="core/claude-code-standard/"><img src="https://img.shields.io/badge/claude--code--standard-0550ae?style=for-the-badge" alt="claude-code-standard"></a></td><td>Technical execution standard for coding, SQL, Python, dbt, and data engineering. Covers stack preferences, documentation rules, testing, and analytics engineering guidance.</td></tr>
+<tr><td><a href="core/claude-session-handoff/"><img src="https://img.shields.io/badge/claude--session--handoff-0550ae?style=for-the-badge" alt="claude-session-handoff"></a></td><td>Generates a structured handoff block that captures full technical state so a conversation can continue in a new window with zero re-explanation.</td></tr>
+<tr><td><a href="core/claude-token-watchdog/"><img src="https://img.shields.io/badge/claude--token--watchdog-0550ae?style=for-the-badge" alt="claude-token-watchdog"></a></td><td>Watches conversation length and fires a continuation handoff at three thresholds (15 / 20 / 25 messages). Delegates to claude-session-handoff at the forced threshold to avoid hitting Claude token or context limits. Manual command: `/watchdog-check`.</td></tr>
+</tbody>
+</table>
 
 ---
 
@@ -95,16 +100,21 @@ Foundational operating standards that govern how Claude behaves across all tasks
 
 Tools for data quality, SQL, reporting, KPI governance, and analytics engineering.
 
-| Skill | What it does |
-|---|---|
-| [![data-defect-investigator](https://img.shields.io/badge/data--defect--investigator-0d6e3f?style=for-the-badge)](data-engineering/data-defect-investigator/) | Investigates data defects, mismatches, duplicates, null issues, broken joins, and reconciliation failures. |
-| [![data-file-profiler](https://img.shields.io/badge/data--file--profiler-0d6e3f?style=for-the-badge)](data-engineering/data-file-profiler/) | Profiles CSV/Excel files: schema inspection, duplicate detection, null analysis, outliers, and data mismatches. |
-| [![dataset-reconciler](https://img.shields.io/badge/dataset--reconciler-0d6e3f?style=for-the-badge)](data-engineering/dataset-reconciler/) | Compares two datasets and explains count, amount, and field-level differences. Source vs target, old vs new, ERP vs DW. |
-| [![report-output-validator](https://img.shields.io/badge/report--output--validator-0d6e3f?style=for-the-badge)](data-engineering/report-output-validator/) | Validates report outputs, totals, grain, subtotals, and regression changes before release. |
-| [![sql-join-risk-reviewer](https://img.shields.io/badge/sql--join--risk--reviewer-0d6e3f?style=for-the-badge)](data-engineering/sql-join-risk-reviewer/) | Reviews schemas, joins, and SQL logic for grain violations, duplicate risk, orphan rows, and aggregation errors. |
-| [![sql-report-query-builder](https://img.shields.io/badge/sql--report--query--builder-0d6e3f?style=for-the-badge)](data-engineering/sql-report-query-builder/) | Builds production-grade SQL for reporting. Translates business requests into safe, auditable query logic. |
-| [![kpi-definition-standard](https://img.shields.io/badge/kpi--definition--standard-0d6e3f?style=for-the-badge)](data-engineering/kpi-definition-standard/) | Defines KPIs with precise formulas, grain, source logic, exclusions, and governance notes. |
-| [![report-requirements-translator](https://img.shields.io/badge/report--requirements--translator-0d6e3f?style=for-the-badge)](data-engineering/report-requirements-translator/) | Converts messy business requests into clean report or dashboard specifications. |
+<table>
+<thead>
+<tr><th>Skill</th><th>What it does</th></tr>
+</thead>
+<tbody>
+<tr><td><a href="data-engineering/data-defect-investigator/"><img src="https://img.shields.io/badge/data--defect--investigator-0d6e3f?style=for-the-badge" alt="data-defect-investigator"></a></td><td>Investigates data defects, mismatches, duplicates, null issues, broken joins, and reconciliation failures.</td></tr>
+<tr><td><a href="data-engineering/data-file-profiler/"><img src="https://img.shields.io/badge/data--file--profiler-0d6e3f?style=for-the-badge" alt="data-file-profiler"></a></td><td>Profiles CSV/Excel files: schema inspection, duplicate detection, null analysis, outliers, and data mismatches.</td></tr>
+<tr><td><a href="data-engineering/dataset-reconciler/"><img src="https://img.shields.io/badge/dataset--reconciler-0d6e3f?style=for-the-badge" alt="dataset-reconciler"></a></td><td>Compares two datasets and explains count, amount, and field-level differences. Source vs target, old vs new, ERP vs DW.</td></tr>
+<tr><td><a href="data-engineering/report-output-validator/"><img src="https://img.shields.io/badge/report--output--validator-0d6e3f?style=for-the-badge" alt="report-output-validator"></a></td><td>Validates report outputs, totals, grain, subtotals, and regression changes before release.</td></tr>
+<tr><td><a href="data-engineering/sql-join-risk-reviewer/"><img src="https://img.shields.io/badge/sql--join--risk--reviewer-0d6e3f?style=for-the-badge" alt="sql-join-risk-reviewer"></a></td><td>Reviews schemas, joins, and SQL logic for grain violations, duplicate risk, orphan rows, and aggregation errors.</td></tr>
+<tr><td><a href="data-engineering/sql-report-query-builder/"><img src="https://img.shields.io/badge/sql--report--query--builder-0d6e3f?style=for-the-badge" alt="sql-report-query-builder"></a></td><td>Builds production-grade SQL for reporting. Translates business requests into safe, auditable query logic.</td></tr>
+<tr><td><a href="data-engineering/kpi-definition-standard/"><img src="https://img.shields.io/badge/kpi--definition--standard-0d6e3f?style=for-the-badge" alt="kpi-definition-standard"></a></td><td>Defines KPIs with precise formulas, grain, source logic, exclusions, and governance notes.</td></tr>
+<tr><td><a href="data-engineering/report-requirements-translator/"><img src="https://img.shields.io/badge/report--requirements--translator-0d6e3f?style=for-the-badge" alt="report-requirements-translator"></a></td><td>Converts messy business requests into clean report or dashboard specifications.</td></tr>
+</tbody>
+</table>
 
 ---
 
@@ -112,21 +122,26 @@ Tools for data quality, SQL, reporting, KPI governance, and analytics engineerin
 
 Professional and editorial writing tools for business communication, technical documentation, and AI prose cleanup.
 
-| Skill | What it does |
-|---|---|
-| [![business-email-drafter](https://img.shields.io/badge/business--email--drafter-b35900?style=for-the-badge)](writing/business-email-drafter/) | Drafts natural business emails that are direct, specific, and free of canned language. |
-| [![correction-email-drafter](https://img.shields.io/badge/correction--email--drafter-b35900?style=for-the-badge)](writing/correction-email-drafter/) | Writes correction, clarification, and reset emails that are precise, calm, and not defensive. |
-| [![cover-letter-drafter](https://img.shields.io/badge/cover--letter--drafter-b35900?style=for-the-badge)](writing/cover-letter-drafter/) | Writes cover letters grounded in real experience and specific to the role. |
-| [![linkedin-message-drafter](https://img.shields.io/badge/linkedin--message--drafter-b35900?style=for-the-badge)](writing/linkedin-message-drafter/) | Writes concise LinkedIn messages for recruiters, hiring managers, and networking. |
-| [![executive-brief-drafter](https://img.shields.io/badge/executive--brief--drafter-b35900?style=for-the-badge)](writing/executive-brief-drafter/) | Writes short executive briefs: issue, impact, risk, and next step. |
-| [![technical-to-business-summarizer](https://img.shields.io/badge/technical--to--business--summarizer-b35900?style=for-the-badge)](writing/technical-to-business-summarizer/) | Translates technical findings into concise business-facing summaries for leadership. |
-| [![stakeholder-status-update](https://img.shields.io/badge/stakeholder--status--update-b35900?style=for-the-badge)](writing/stakeholder-status-update/) | Writes concise stakeholder updates on project status, issues, risks, and next steps. |
-| [![internal-technical-doc-writer](https://img.shields.io/badge/internal--technical--doc--writer-b35900?style=for-the-badge)](writing/internal-technical-doc-writer/) | Writes internal technical documents, SOPs, incident notes, and decision memos. |
-| [![incident-root-cause-writer](https://img.shields.io/badge/incident--root--cause--writer-b35900?style=for-the-badge)](writing/incident-root-cause-writer/) | Writes incident summaries separating facts, impact, root cause, and corrective action. |
-| [![requirements-doc-drafter](https://img.shields.io/badge/requirements--doc--drafter-b35900?style=for-the-badge)](writing/requirements-doc-drafter/) | Writes requirements documents with scope, logic, assumptions, dependencies, and acceptance criteria. |
-| [![meeting-to-decision-memo](https://img.shields.io/badge/meeting--to--decision--memo-b35900?style=for-the-badge)](writing/meeting-to-decision-memo/) | Converts meeting notes into decision memos with outcomes, owners, and next actions. |
-| [![ai-writing-pattern-remover](https://img.shields.io/badge/ai--writing--pattern--remover-b35900?style=for-the-badge)](writing/ai-writing-pattern-remover/) | Detects and removes AI writing patterns based on Wikipedia's "Signs of AI writing" guide. |
-| [![ai-prose-humanizer](https://img.shields.io/badge/ai--prose--humanizer-b35900?style=for-the-badge)](writing/ai-prose-humanizer/) | Removes AI patterns and adds human voice to prose. Two modes: CLEAN for professional docs, VOICE for creative writing. |
+<table>
+<thead>
+<tr><th>Skill</th><th>What it does</th></tr>
+</thead>
+<tbody>
+<tr><td><a href="writing/business-email-drafter/"><img src="https://img.shields.io/badge/business--email--drafter-b35900?style=for-the-badge" alt="business-email-drafter"></a></td><td>Drafts natural business emails that are direct, specific, and free of canned language.</td></tr>
+<tr><td><a href="writing/correction-email-drafter/"><img src="https://img.shields.io/badge/correction--email--drafter-b35900?style=for-the-badge" alt="correction-email-drafter"></a></td><td>Writes correction, clarification, and reset emails that are precise, calm, and not defensive.</td></tr>
+<tr><td><a href="writing/cover-letter-drafter/"><img src="https://img.shields.io/badge/cover--letter--drafter-b35900?style=for-the-badge" alt="cover-letter-drafter"></a></td><td>Writes cover letters grounded in real experience and specific to the role.</td></tr>
+<tr><td><a href="writing/linkedin-message-drafter/"><img src="https://img.shields.io/badge/linkedin--message--drafter-b35900?style=for-the-badge" alt="linkedin-message-drafter"></a></td><td>Writes concise LinkedIn messages for recruiters, hiring managers, and networking.</td></tr>
+<tr><td><a href="writing/executive-brief-drafter/"><img src="https://img.shields.io/badge/executive--brief--drafter-b35900?style=for-the-badge" alt="executive-brief-drafter"></a></td><td>Writes short executive briefs: issue, impact, risk, and next step.</td></tr>
+<tr><td><a href="writing/technical-to-business-summarizer/"><img src="https://img.shields.io/badge/technical--to--business--summarizer-b35900?style=for-the-badge" alt="technical-to-business-summarizer"></a></td><td>Translates technical findings into concise business-facing summaries for leadership.</td></tr>
+<tr><td><a href="writing/stakeholder-status-update/"><img src="https://img.shields.io/badge/stakeholder--status--update-b35900?style=for-the-badge" alt="stakeholder-status-update"></a></td><td>Writes concise stakeholder updates on project status, issues, risks, and next steps.</td></tr>
+<tr><td><a href="writing/internal-technical-doc-writer/"><img src="https://img.shields.io/badge/internal--technical--doc--writer-b35900?style=for-the-badge" alt="internal-technical-doc-writer"></a></td><td>Writes internal technical documents, SOPs, incident notes, and decision memos.</td></tr>
+<tr><td><a href="writing/incident-root-cause-writer/"><img src="https://img.shields.io/badge/incident--root--cause--writer-b35900?style=for-the-badge" alt="incident-root-cause-writer"></a></td><td>Writes incident summaries separating facts, impact, root cause, and corrective action.</td></tr>
+<tr><td><a href="writing/requirements-doc-drafter/"><img src="https://img.shields.io/badge/requirements--doc--drafter-b35900?style=for-the-badge" alt="requirements-doc-drafter"></a></td><td>Writes requirements documents with scope, logic, assumptions, dependencies, and acceptance criteria.</td></tr>
+<tr><td><a href="writing/meeting-to-decision-memo/"><img src="https://img.shields.io/badge/meeting--to--decision--memo-b35900?style=for-the-badge" alt="meeting-to-decision-memo"></a></td><td>Converts meeting notes into decision memos with outcomes, owners, and next actions.</td></tr>
+<tr><td><a href="writing/ai-writing-pattern-remover/"><img src="https://img.shields.io/badge/ai--writing--pattern--remover-b35900?style=for-the-badge" alt="ai-writing-pattern-remover"></a></td><td>Detects and removes AI writing patterns based on Wikipedia's "Signs of AI writing" guide.</td></tr>
+<tr><td><a href="writing/ai-prose-humanizer/"><img src="https://img.shields.io/badge/ai--prose--humanizer-b35900?style=for-the-badge" alt="ai-prose-humanizer"></a></td><td>Removes AI patterns and adds human voice to prose. Two modes: CLEAN for professional docs, VOICE for creative writing.</td></tr>
+</tbody>
+</table>
 
 ---
 
@@ -134,14 +149,19 @@ Professional and editorial writing tools for business communication, technical d
 
 Resume optimization, salary negotiation, and job application tools.
 
-| Skill | What it does |
-|---|---|
-| [![resume-bullet-rewriter](https://img.shields.io/badge/resume--bullet--rewriter-6f42c1?style=for-the-badge)](career/resume-bullet-rewriter/) | Rewrites a single resume bullet to be metric-backed, action-verb-led, and free of banned phrases. |
-| [![resume-bullet-editor](https://img.shields.io/badge/resume--bullet--editor-6f42c1?style=for-the-badge)](career/resume-bullet-editor/) | Edits existing resume bullets to remove banned language, add metrics, and strengthen impact. |
-| [![resume-section-writer](https://img.shields.io/badge/resume--section--writer-6f42c1?style=for-the-badge)](career/resume-section-writer/) | Writes resume sections from raw notes, brain dumps, or bullet lists. |
-| [![resume-one-page-optimizer](https://img.shields.io/badge/resume--one--page--optimizer-6f42c1?style=for-the-badge)](career/resume-one-page-optimizer/) | ATS-optimized one-page resume evaluator and rewriter. Scores, gaps, and full rewrite against a job description. |
-| [![resume-two-page-optimizer](https://img.shields.io/badge/resume--two--page--optimizer-6f42c1?style=for-the-badge)](career/resume-two-page-optimizer/) | ATS-optimized two-page resume evaluator for senior/director/VP roles. |
-| [![salary-negotiation-framework](https://img.shields.io/badge/salary--negotiation--framework-6f42c1?style=for-the-badge)](career/salary-negotiation-framework/) | Data-driven salary and total compensation negotiation framework. Covers tech, finance, PE/VC, healthcare, and B2B. |
+<table>
+<thead>
+<tr><th>Skill</th><th>What it does</th></tr>
+</thead>
+<tbody>
+<tr><td><a href="career/resume-bullet-rewriter/"><img src="https://img.shields.io/badge/resume--bullet--rewriter-6f42c1?style=for-the-badge" alt="resume-bullet-rewriter"></a></td><td>Rewrites a single resume bullet to be metric-backed, action-verb-led, and free of banned phrases.</td></tr>
+<tr><td><a href="career/resume-bullet-editor/"><img src="https://img.shields.io/badge/resume--bullet--editor-6f42c1?style=for-the-badge" alt="resume-bullet-editor"></a></td><td>Edits existing resume bullets to remove banned language, add metrics, and strengthen impact.</td></tr>
+<tr><td><a href="career/resume-section-writer/"><img src="https://img.shields.io/badge/resume--section--writer-6f42c1?style=for-the-badge" alt="resume-section-writer"></a></td><td>Writes resume sections from raw notes, brain dumps, or bullet lists.</td></tr>
+<tr><td><a href="career/resume-one-page-optimizer/"><img src="https://img.shields.io/badge/resume--one--page--optimizer-6f42c1?style=for-the-badge" alt="resume-one-page-optimizer"></a></td><td>ATS-optimized one-page resume evaluator and rewriter. Scores, gaps, and full rewrite against a job description.</td></tr>
+<tr><td><a href="career/resume-two-page-optimizer/"><img src="https://img.shields.io/badge/resume--two--page--optimizer-6f42c1?style=for-the-badge" alt="resume-two-page-optimizer"></a></td><td>ATS-optimized two-page resume evaluator for senior/director/VP roles.</td></tr>
+<tr><td><a href="career/salary-negotiation-framework/"><img src="https://img.shields.io/badge/salary--negotiation--framework-6f42c1?style=for-the-badge" alt="salary-negotiation-framework"></a></td><td>Data-driven salary and total compensation negotiation framework. Covers tech, finance, PE/VC, healthcare, and B2B.</td></tr>
+</tbody>
+</table>
 
 ---
 
